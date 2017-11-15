@@ -37,18 +37,19 @@ export default {
     return {
       msg: '',
       form:{
-        name:"zhz",
-        pwd:"123"
+        name:"张浩壮",
+        pwd:"123456"
       }
     }
   },
-  create(){},
-  mountend(){
-
+  created :function(){
+  },
+  mounted :function(){
+    
   },
   methods:{
     login(){
-        this.$router.push({ path: '/mainx' })
+        this.$router.push({ path: '/mainx/firstview' })
     }
   }
 }
@@ -59,6 +60,7 @@ export default {
 .hello{
   width: 50%;
   margin: 200px auto;
+  text-align: center;
 }
 
 h1, h2 {

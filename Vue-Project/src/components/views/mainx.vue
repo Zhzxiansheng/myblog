@@ -1,20 +1,63 @@
 <template>
-  <div class="">
+  <div class="mainx">
     <el-container>
         <el-header class="header">
+        <router-link to="/">
           <span class="logo">
             Z
           </span>
+        </router-link>
+        <span class="timecon">
+          <canvas id="canvas" height="100" style="width:100%"></canvas>
+        </span>
       </el-header>
         <el-container class="container">
-          <el-aside width="200px" class="aside">Aside</el-aside>
+          <el-aside width="260px" class="aside">
+            <!-- 左侧导航栏 -->
+            <el-menu :default-openeds="['1','2']">
+              <el-submenu index="1">
+                <template slot="title"><i class="el-icon-menu"></i>第一界面</template>
+                <el-menu-item-group>
+                  <router-link to="/mainx/firstview">
+                    <el-menu-item index="1-1">1.1界面</el-menu-item>
+                  </router-link>
+                </el-menu-item-group>
+                  <el-menu-item index="1-3">选项3</el-menu-item>
+                </el-menu-item-group>
+              </el-submenu>
+              <el-submenu index="2">
+                  <template slot="title"><i class="el-icon-star-off"></i>知乎</template>
+                <el-menu-item-group>
+                  <router-link to="/mainx/douban">
+                    <el-menu-item index="2-1">知乎axios</el-menu-item>
+                  </router-link>
+                  <el-menu-item index="2-2">选项2</el-menu-item>
+                </el-menu-item-group>
+
+              </el-submenu>
+              <el-submenu index="3">
+                <template slot="title"><i class="el-icon-setting"></i>导航三</template>
+                <el-menu-item-group>
+                  <template slot="title">分组一</template>
+                  <el-menu-item index="3-1">选项1</el-menu-item>
+                  <el-menu-item index="3-2">选项2</el-menu-item>
+                </el-menu-item-group>
+                <el-menu-item-group title="分组2">
+                  <el-menu-item index="3-3">选项3</el-menu-item>
+                </el-menu-item-group>
+                <el-submenu index="3-4">
+                  <template slot="title">选项4</template>
+                  <el-menu-item index="3-4-1">选项4-1</el-menu-item>
+                </el-submenu>
+              </el-submenu>
+            </el-menu>
+
+          </el-aside>
           <el-main>
-            <el-input v-model="form.name" v-show="1" data-num="1"></el-input>
-            <el-input v-model="form.name" v-show="2" data-num="2"></el-input>
-            <el-input v-model="form.name" v-show="3" data-num="3"></el-input>
-            <el-input v-model="form.name" v-show="show_4"></el-input>
+
+              <router-view/>
           </el-main>
-          <button type="button" name="button" @click="xuan()">隐藏123</button>
+
         </el-container>
     </el-container>
   </div>
@@ -23,6 +66,7 @@
 
 
 <script>
+import { time } from '../../../static/js/canvasTime.js'
 export default {
   name:"mainx",
   data(){
@@ -30,25 +74,17 @@ export default {
       form:{
         name:"1"
       },
-      1:true,
-      2:true,
-      3:true,
       show_4:true
     }
   },
-  create(){
+  created(){
 
   },
-  mountend(){
-
+  mounted (){
+    time()
   },
   methods:{
-    xuan(){
-      var arr = [1,2,3];
-      for(var i =0;i<arr.length;i++){
-        console.log(arr[i]);
-      }
-    }
+
   }
 }
 </script>
@@ -72,11 +108,22 @@ export default {
   text-align: center;
   line-height: 100px;
 }
+.timecon{
+  display: inline-block;
+  width: 200px;
+  height: 100px;
+  float: right;
+  line-height: 117px;
+}
 .container{
   padding-top: 20px;
 }
 .aside{
   border-right: 1px solid #D8DCE5;
+}
+a{
+  text-decoration: none;
+  color: #2d2f33;
 }
 
 </style>

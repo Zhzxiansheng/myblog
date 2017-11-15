@@ -3,8 +3,8 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import view from '@/components/common/view'
 import mainx from '@/components/views/mainx'
-
-
+import firstview from '@/components/views/firstview'
+import zhihu from '@/components/views/zhihu'
 
 Vue.use(Router)
 
@@ -23,7 +23,19 @@ export default new Router({
     {
       path: '/mainx',
       name: 'mainx',
-      component: mainx
+      component: mainx,
+      children:[
+        {
+          path: '/mainx/firstview',
+          name: 'firstview',
+          component: firstview,
+        },
+        {
+          path: '/mainx/douban',
+          name: 'douban',
+          component: zhihu,
+        }
+      ]
     }
   ]
 })
