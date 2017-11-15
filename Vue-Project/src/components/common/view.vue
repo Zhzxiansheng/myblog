@@ -52,7 +52,11 @@
             }</div>
         </el-collapse-item>
         <el-collapse-item title="5.数据请求vue-resource" name="5">
-          <div>安装、调用方法：</div>
+          <div>安装、调用方法：cnpm install vue-resource --save</div>
+          <div>在main.js 中设置为全局对象 1--import  VueResource  from 'vue-resource'  2-- Vue.use(VueResource) 注：这时候打印this 对象；里面就会有$resource属性</div>
+        </el-collapse-item>
+        <el-collapse-item title="6.关于将请求接口地址封装到一个文件中的方法" name="6">
+          <div>1</div>
           <div></div>
         </el-collapse-item>
       </el-collapse>

@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// import {time} from '../../../static/js/canvansTime.js' //注意路径
 export default {
   data () {
     return {
@@ -24,7 +23,12 @@ export default {
       show_4:true
     }
   },
-  created(){},
+  created :function(){
+    // vue -resource 请求接口
+    this.$http.get("https://zhihu-agent.herokuapp.com/get?api=/4/news/latest").then(function(data){
+      console.log(data.data);
+    });
+  },
   mounted(){
 
   },
