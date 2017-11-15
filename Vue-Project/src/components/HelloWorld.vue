@@ -17,13 +17,15 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul> -->
-    <form class="" action="index.html" method="post">
-      <p><label for="username">用户：</label>
-      <input type="text" name="" value="" id="username"></p>
-      <p><label for="password">密码：</label>
-      <input type="text" name="" value="" id="password"></p>
-      <button type="button" name="button" @click="login()">跳转</button>
-    </form>
+  <el-form ref="form" :model="form" label-width="80px">
+    <el-form-item label="用户">
+      <el-input v-model="form.name"></el-input>
+    </el-form-item>
+    <el-form-item label="密码">
+      <el-input v-model="form.pwd" type="password"></el-input>
+    </el-form-item>
+    <el-button type="primary" @click="login()">进入主站</el-button> <router-link to="/view">Go to introduce</router-link>
+  </el-form>
 
   </div>
 </template>
@@ -33,7 +35,11 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: ''
+      msg: '',
+      form:{
+        name:"zhz",
+        pwd:"123"
+      }
     }
   },
   create(){},
@@ -42,7 +48,7 @@ export default {
   },
   methods:{
     login(){
-        this.$router.push({ path: '/view' })
+        this.$router.push({ path: '/mainx' })
     }
   }
 }
@@ -50,6 +56,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hello{
+  width: 50%;
+  margin: 200px auto;
+}
+
 h1, h2 {
   font-weight: normal;
 }
