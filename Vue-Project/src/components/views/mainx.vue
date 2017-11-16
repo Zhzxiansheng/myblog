@@ -19,10 +19,12 @@
                 <template slot="title"><i class="el-icon-menu"></i>第一界面</template>
                 <el-menu-item-group>
                   <router-link to="/mainx/firstview">
-                    <el-menu-item index="1-1">1.1界面</el-menu-item>
+                    <el-menu-item index="1-1" @click="chuanzhi($event)">1.1界面</el-menu-item>
                   </router-link>
                 </el-menu-item-group>
-                  <el-menu-item index="1-3">选项3</el-menu-item>
+                <router-link to="/mainx/notes">
+                  <el-menu-item index="1-3">笔记</el-menu-item>
+                </router-link>
                 </el-menu-item-group>
               </el-submenu>
               <el-submenu index="2">
@@ -31,12 +33,14 @@
                   <router-link to="/mainx/douban">
                     <el-menu-item index="2-1">知乎axios</el-menu-item>
                   </router-link>
-                  <el-menu-item index="2-2">选项2</el-menu-item>
+                 <router-link to="/mainx/zhihu">
+                  <el-menu-item index="2-2">知乎vue-resource</el-menu-item>
+                </router-link>
                 </el-menu-item-group>
 
               </el-submenu>
               <el-submenu index="3">
-                <template slot="title"><i class="el-icon-setting"></i>导航三</template>
+                <template slot="title"><i class="el-icon-setting"></i>11212</template>
                 <el-menu-item-group>
                   <template slot="title">分组一</template>
                   <el-menu-item index="3-1">选项1</el-menu-item>
@@ -55,11 +59,12 @@
           </el-aside>
           <el-main>
 
-              <router-view/>
+              <router-view />
           </el-main>
 
         </el-container>
     </el-container>
+
   </div>
 </template>
 
@@ -67,23 +72,43 @@
 
 <script>
 import { time } from '../../../static/js/canvasTime.js'
+import notes from './notes'
 export default {
   name:"mainx",
   data(){
     return{
+      props:["person"],
       form:{
         name:"1"
       },
+      me:{
+        name:"张浩壮",
+        age:"88",
+        sex:"man"
+      },
       show_4:true
     }
+  },
+  components:{
+    notes
   },
   created(){
 
   },
   mounted (){
-    time()
+    time();
+    // console.log(this.prerson);
+    // this.$message({
+    //       message: '欢迎你，',
+    //       type: 'success'
+    //     });
   },
+
   methods:{
+    chuanzhi(e){
+      console.log($);
+      console.log($(e.$el).html());
+    }
 
   }
 }

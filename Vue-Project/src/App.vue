@@ -1,13 +1,21 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-    <router-view/>
+    <router-view v-bind:me="person"/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+    return{
+      person:{
+        name:"张浩壮",
+        sex:"man"
+      }
+    }
+  }
 }
 </script>
 

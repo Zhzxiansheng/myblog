@@ -1,6 +1,11 @@
 <template>
   <div class="hello">
-   <h1>第一界面</h1>
+   <el-carousel indicator-position="outside"  trigger="click" :interval="4000" :autoplay="false" height="750px">
+      <el-carousel-item v-for="vlaue in swiper" height="100%" :key="vlaue.img">
+        <img :src="vlaue.img" alt="" style="width:100%;height:100%">
+      </el-carousel-item>
+    </el-carousel>
+
    <el-input v-model="form.name" v-show="show_4" data-num="1"></el-input>
    <el-input v-model="form.name" v-show="show_4" data-num="2"></el-input>
    <el-input v-model="form.name" v-show="show_4" data-num="3"></el-input>
@@ -20,14 +25,16 @@ export default {
         name:"zhz",
         pwd:"123"
       },
-      show_4:true
+      show_4:true,
+      swiper:[
+        {"img": "../../../static/img/swiper.jpg"},
+        {"img": "../../../static/img/swiper-2.jpg"},
+        {"img": "../../../static/img/swiper-3.jpg"}
+      ]
     }
   },
   created :function(){
-    // vue -resource 请求接口
-    this.$http.get("https://zhihu-agent.herokuapp.com/get?api=/4/news/latest").then(function(data){
-      console.log(data.data);
-    });
+
   },
   mounted(){
 
@@ -48,7 +55,9 @@ export default {
 .hello{
   width: 100%;
 }
-
+.el-carousel__container{
+  height: 500px !important;
+}
 h1, h2 {
   font-weight: normal;
 }

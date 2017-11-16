@@ -5,6 +5,8 @@ import view from '@/components/common/view'
 import mainx from '@/components/views/mainx'
 import firstview from '@/components/views/firstview'
 import zhihu from '@/components/views/zhihu'
+import zhihuResource from '@/components/views/zhihu-resource'
+import notes from '@/components/views/notes'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
           path: '/mainx/douban',
           name: 'douban',
           component: zhihu,
+        },
+        {
+          path: "/mainx/zhihu",
+          name:"zhihu",
+          component: zhihuResource,
+        },
+        {
+          path: "/mainx/notes",
+          name:"notes",
+          component: notes,
         }
       ]
     }

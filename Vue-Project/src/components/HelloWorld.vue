@@ -19,12 +19,12 @@
     </ul> -->
   <el-form ref="form" :model="form" label-width="80px">
     <el-form-item label="用户">
-      <el-input v-model="form.name"></el-input>
+      <el-input v-model="form.name" ref="user"></el-input>
     </el-form-item>
     <el-form-item label="密码">
-      <el-input v-model="form.pwd" type="password"></el-input>
+      <el-input v-model="form.pwd" type="password" ref="pwd"></el-input>
     </el-form-item>
-    <el-button type="primary" @click="login()">进入主站</el-button> <router-link to="/view">Go to introduce</router-link>
+    <el-button type="primary" @click="login($data)">进入主站</el-button> <router-link to="/view">Go to introduce</router-link>
   </el-form>
 
   </div>
@@ -37,19 +37,21 @@ export default {
     return {
       msg: '',
       form:{
-        name:"张浩壮",
-        pwd:"123456"
+        name:"",
+        pwd:""
       }
     }
   },
   created :function(){
   },
   mounted :function(){
-    
+
   },
   methods:{
-    login(){
-        this.$router.push({ path: '/mainx/firstview' })
+    login(data){
+      data = JSON.stringify(data);
+      console.log(data);
+        this.$router.push({ path: '/mainx/firstview?'+data })
     }
   }
 }
