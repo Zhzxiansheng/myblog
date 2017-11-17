@@ -22,9 +22,19 @@ export default {
   },
   created(){
     // vue -resource 请求接口
+    const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+        // setTimeout(() => {
+        //   loading.close();
+        // }, 2000);
     this.$http.get("https://zhihu-agent.herokuapp.com/get?api=/4/news/latest").then(function(data){
       this.list = data.data;
       console.log(this.list);
+      loading.close();
     });
   },
   mounted(){

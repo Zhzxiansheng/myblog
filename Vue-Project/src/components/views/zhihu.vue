@@ -1,5 +1,6 @@
 <template>
   <div class="douban">
+    <el-progress :percentage="num" :status="status"></el-progress>
    <h1>知乎top5</h1>
     <ul v-for="x in list">
       <li v-for="y in x.top_stories" class="listLi">
@@ -16,16 +17,28 @@ export default {
   data () {
     return {
       msg: '',
-      list:[]
+      list:[],
+      num:0,
+      status:""
     }
   },
   created(){
 
   },
   mounted(){
+    var vue= this;
+    setTimeout(function(){
+      if(vue.status == "success"){
+
+      }else{
+        vue.num = 50;
+      }
+
+    },500);
     this.getList(1);
   },
   methods:{
+
     getList(type) {
 			var vue = this;
 			if (type) {
@@ -34,13 +47,16 @@ export default {
 					vue.list.push(data.data);
           console.log(data.data);
           console.log(vue.list);
+          vue.num = 100;
+          vue.status = "success";
 				});
 			} else {
 				api.getNewsByDate(vue.GetDate(vue.count)).then(function(data) {
 					vue.list.push(data.data);
           console.log(data.data);
           console.log(vue.list);
-					// vue.loading = false;
+          vue.num = 100;
+          vue.status = "success";
 				});
 			}
 		}

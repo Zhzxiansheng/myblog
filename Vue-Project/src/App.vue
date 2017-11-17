@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-    <router-view v-bind:me="person"/>
+    <router-view/>
   </div>
 </template>
 

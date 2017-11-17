@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
    <el-carousel indicator-position="outside"  trigger="click" :interval="4000" :autoplay="false" height="750px">
-      <el-carousel-item v-for="vlaue in swiper" height="100%" :key="vlaue.img">
-        <img :src="vlaue.img" alt="" style="width:100%;height:100%">
+      <el-carousel-item v-for="value in swiper" height="100%" :key="value.path">
+        <router-link :to="value.path"><img :src="value.img" alt="" style="width:100%;height:100%"></router-link>
       </el-carousel-item>
     </el-carousel>
 
@@ -27,9 +27,12 @@ export default {
       },
       show_4:true,
       swiper:[
-        {"img": "../../../static/img/swiper.jpg"},
-        {"img": "../../../static/img/swiper-2.jpg"},
-        {"img": "../../../static/img/swiper-3.jpg"}
+        {
+          "img": "../../../static/img/swiper.jpg",
+          "path": "/article"
+        },
+        {"img": "../../../static/img/swiper-2.jpg","path": "/article"},
+        {"img": "../../../static/img/swiper-3.jpg","path": "/article"}
       ]
     }
   },

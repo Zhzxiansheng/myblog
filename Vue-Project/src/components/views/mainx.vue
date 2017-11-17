@@ -1,16 +1,16 @@
 <template>
   <div class="mainx">
     <el-container>
-        <el-header class="header">
-        <router-link to="/">
-          <span class="logo">
-            Z
-          </span>
-        </router-link>
-        <span class="timecon">
-          <canvas id="canvas" height="100" style="width:100%"></canvas>
+      <el-header class="header">
+      <router-link to="/">
+        <span class="logo">
+          Z
         </span>
-      </el-header>
+      </router-link>
+      <span class="timecon">
+        <canvas id="canvas" height="100" style="width:100%"></canvas>
+      </span>
+    </el-header>
         <el-container class="container">
           <el-aside width="260px" class="aside">
             <!-- 左侧导航栏 -->
@@ -40,11 +40,11 @@
 
               </el-submenu>
               <el-submenu index="3">
-                <template slot="title"><i class="el-icon-setting"></i>11212</template>
+              <template slot="title"><i class="el-icon-setting"></i>关于我的</template>
                 <el-menu-item-group>
-                  <template slot="title">分组一</template>
-                  <el-menu-item index="3-1">选项1</el-menu-item>
-                  <el-menu-item index="3-2">选项2</el-menu-item>
+                  <router-link to="/mainx/aboutme">
+                    <el-menu-item index="3-1">个人简历</el-menu-item>
+                  </router-link>
                 </el-menu-item-group>
                 <el-menu-item-group title="分组2">
                   <el-menu-item index="3-3">选项3</el-menu-item>
@@ -72,7 +72,6 @@
 
 <script>
 import { time } from '../../../static/js/canvasTime.js'
-import notes from './notes'
 export default {
   name:"mainx",
   data(){
@@ -89,9 +88,7 @@ export default {
       show_4:true
     }
   },
-  components:{
-    notes
-  },
+
   created(){
 
   },

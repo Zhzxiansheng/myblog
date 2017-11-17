@@ -7,6 +7,9 @@ import firstview from '@/components/views/firstview'
 import zhihu from '@/components/views/zhihu'
 import zhihuResource from '@/components/views/zhihu-resource'
 import notes from '@/components/views/notes'
+import article from '@/components/views/article'
+import aboutme from '@/components/views/aboutme'
+
 
 Vue.use(Router)
 
@@ -21,6 +24,11 @@ export default new Router({
       path: '/view',
       name: '博客',
       component: view
+    },
+    {
+      path: '/article',
+      name: '文章',
+      component: article
     },
     {
       path: '/mainx',
@@ -46,6 +54,11 @@ export default new Router({
           path: "/mainx/notes",
           name:"notes",
           component: notes,
+        },
+        {
+          path: "/mainx/aboutme",
+          name:"aboutme",
+          component: aboutme,
         }
       ]
     }
