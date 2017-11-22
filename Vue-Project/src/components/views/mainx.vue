@@ -90,15 +90,19 @@ export default {
   },
 
   created(){
+    if(system.user == ""){
+      system.user = "访客"
+    }
 
   },
   mounted (){
+    console.log(system);
     time();
     // console.log(this.prerson);
-    // this.$message({
-    //       message: '欢迎你，',
-    //       type: 'success'
-    //     });
+    this.$message({
+          message: '欢迎你，'+system.user,
+          type: 'success'
+        });
   },
 
   methods:{

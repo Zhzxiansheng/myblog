@@ -10,11 +10,17 @@ export default {
   name: 'app',
   data(){
     return{
+      system:"hahah",
       person:{
         name:"张浩壮",
         sex:"man"
       }
     }
+  },
+  created(){
+    window.system={};
+    window.system.author = "张浩壮";
+    window.system.user = "";
   }
 }
 </script>

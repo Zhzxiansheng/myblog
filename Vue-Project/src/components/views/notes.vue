@@ -19,6 +19,7 @@
       <p>{{ note9 }}</p>
       <p>{{ note10 }}</p>
     </el-tab-pane>
+    <el-tab-pane label="声明全局对象，能够跨页面都到">{{note11}}</el-tab-pane>
   </el-tabs>
   </div>
 
@@ -40,7 +41,8 @@ export default {
       note7: "首先写一个公共组件，head.vue 然后里面必须export 抛出。然后在另一个vue 文件  import X from '路径'  引入 ，然后在下面data 同级目录写下  components:{x}, 然后只需在上面写下 <x></x> 的标签就能把这个公共组件引入进来",
       note8:"webpack专门创建了负责放置这些文件的文件夹static 会在打包的时候把该文件夹下的文件都正确打包。 ",
       note9: "引入外部js 的方法 在 script 标签中: import {name} from “./static/js/name.js” ,然后在下面需要引用到该方法的时候写 name() 即可",
-      note10: "引入外部css 的方法 在 style 标签中： @import './static/css/name.css' 即可"
+      note10: "引入外部css 的方法 在 style 标签中： @import './static/css/name.css' 即可",
+      note11: "在app.vue 中声明了一个全局对象system 能够在别的组件得到，但是如果页面刷新了，并且没有提前赋值，那么就会让这个 属性消失掉"
     }
   },
   created(){

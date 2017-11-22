@@ -19,10 +19,10 @@
     </ul> -->
   <el-form ref="form" :model="form" label-width="80px">
     <el-form-item label="用户">
-      <el-input v-model="form.name" ref="user"></el-input>
+      <el-input v-model="form.name" ref="user" placeholder="张浩壮"></el-input>
     </el-form-item>
     <el-form-item label="密码">
-      <el-input v-model="form.pwd" type="password" ref="pwd"></el-input>
+      <el-input v-model="form.pwd" type="password" ref="pwd" placeholder="***"></el-input>
     </el-form-item>
     <el-button type="primary" @click="login($data)">进入主站</el-button> <router-link to="/view">Go to introduce</router-link>
   </el-form>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import {system} from "../../static/js/system.js"
 export default {
   name: 'HelloWorld',
   data () {
@@ -45,10 +46,15 @@ export default {
   created :function(){
   },
   mounted :function(){
-
+    console.log(this);
+    this.$message({
+        message: '项目作者：'+window.system.author,
+        type: 'success'
+    });
   },
   methods:{
     login(data){
+      window.system.user = data.form.name;
       data = JSON.stringify(data);
       console.log(data);
         this.$router.push({ path: '/mainx/firstview?'+data })
