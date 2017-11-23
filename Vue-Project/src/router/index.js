@@ -7,7 +7,8 @@ import firstview from '@/components/views/firstview'
 import zhihu from '@/components/views/zhihu'
 import zhihuResource from '@/components/views/zhihu-resource'
 import notes from '@/components/views/notes'
-import article from '@/components/views/article'
+import articlelist from '@/components/views/articlelist'
+import articledetail from '@/components/views/articledetail'
 import aboutme from '@/components/views/aboutme'
 
 
@@ -26,9 +27,9 @@ export default new Router({
       component: view
     },
     {
-      path: '/article',
-      name: '文章',
-      component: article
+      path: '/articledetail',
+      name: '文章详情',
+      component: articledetail
     },
     {
       path: '/mainx',
@@ -39,6 +40,11 @@ export default new Router({
           path: '/mainx/firstview',
           name: 'firstview',
           component: firstview,
+        },
+        {
+          path: '/mainx/article',
+          name: '文章列表',
+          component: articlelist
         },
         {
           path: '/mainx/douban',
