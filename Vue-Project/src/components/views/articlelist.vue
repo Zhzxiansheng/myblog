@@ -23,7 +23,7 @@ export default {
         {
           "id":2,
           "title":"vue常用的一些小技巧",
-          "content":"1.v-if: <br/> 2.v-show: <br/> 3.过滤器 "
+          "content":"1.v-if: <br/> 2.v-show: <br/> 3.过滤器 4. 根据不同的状态展示不同的样式v-bind:class"
         },
         {
           "id":3,

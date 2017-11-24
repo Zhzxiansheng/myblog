@@ -55,7 +55,7 @@
           </el-aside>
           <el-main>
 
-              <router-view />
+              <router-view v-bind:message="message2"/>
           </el-main>
 
         </el-container>
@@ -72,7 +72,7 @@ export default {
   name:"mainx",
   data(){
     return{
-      props:["person"],
+      message2:"父组件传下来的值",
       user:"",
       form:{
         name:"1"
@@ -90,7 +90,8 @@ export default {
     if(system.user == ""){
       system.user = "访客"
     }
-
+    system.path=location.hash;
+    console.log(system.path)
   },
   mounted (){
     console.log(system);

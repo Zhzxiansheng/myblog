@@ -6,11 +6,20 @@ import router from './router'
 import  VueResource  from 'vue-resource'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import Vuex from 'vuex'
 
 Vue.use(ElementUI)
 Vue.use(VueResource)
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
+
+// 定义vuex 的 store 对象
+var store = new Vuex.Store({//store对象
+  state: {
+    show: false
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({

@@ -6,9 +6,9 @@
         <el-breadcrumb separator="/" style="padding-top: 20px;">
           <el-breadcrumb-item :to="{ path: '/mainx/firstview' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/mainx/article' }">文章列表</el-breadcrumb-item>
-          <el-breadcrumb-item>文章详情</el-breadcrumb-item>
+          <el-breadcrumb-item v-for="item in json" v-show="item.id == articid" :key="item.id">{{item.title}}</el-breadcrumb-item>
         </el-breadcrumb>
-        <section class="content" v-for="item in json" v-show="item.id == articid">
+        <section class="content" v-for="item in json" v-show="item.id == articid" :key="item.id">
           <h3>{{item.title}}</h3>
           <p v-html="item.content"></p>
         </section>
@@ -33,12 +33,12 @@ export default {
         {
           "id":2,
           "title":"vue常用的一些小技巧",
-          "content":"1.v-if: <br/> 2.v-show: <br/> 3.过滤器 "
+          "content":"4. v-bind:class 的办法， 根据不同的status 展示不同的样式，这里其实是根据状态的返回值是多少来赋值不同的class.在div 行内加入v-bind:class={'class-a':'判断条件','class-b':'判断条件'} 这里的大括号外边应该加上双引号，因为vue 会解析报错的原因，这里没有加 这里会根据判断条件的 true or false 来选择应用哪个class .class-a：border: 1px solid red .class-b：border: 1px solid blue; "
         },
         {
           "id":3,
           "title":"vuex 的理解与应用",
-          "content":"<p>什么是vuex?</p> "
+          "content":"<p>什么是vuex?</p><p>https://vuex.vuejs.org/zh-cn/state.html; https://segmentfault.com/a/1190000009404727</p> "
         }
       ]
     }

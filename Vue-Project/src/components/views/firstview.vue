@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    
    <el-carousel indicator-position="outside"  trigger="click" :interval="4000" :autoplay="false" height="300px" style="width:1000px;margin:auto;">
       <el-carousel-item v-for="value in swiper" height="100%" :key="value.path">
         <router-link :to="value.path"><img :src="value.img" alt="" style="width:100%;height:100%"></router-link>
@@ -8,7 +9,11 @@
 
     
 
-   <el-input v-model="form.name" v-show="show_4" data-num="1"></el-input>
+   <el-input v-model="form.name" v-show="show_4" data-num="1" v-bind:class="{ 'class-a': false, 'class-b':true }"></el-input>
+
+
+
+    <p class="gitparent">划重点：{{message}}</p>
    <el-input v-model="form.name" v-show="show_4" data-num="2"></el-input>
    <el-input v-model="form.name" v-show="show_4" data-num="3"></el-input>
    <el-input v-model="form.name" v-show="show_4"></el-input>
@@ -24,7 +29,7 @@ export default {
     return {
       msg: '',
       form:{
-        name:"zhz",
+        name:"根据状态设置不同的 class",
         pwd:"123"
       },
       show_4:true,
@@ -38,6 +43,7 @@ export default {
       ]
     }
   },
+  props:["message"],
   created :function(){
 
   },
@@ -76,5 +82,14 @@ li {
 }
 a {
   color: #42b983;
+}
+.class-a{
+  border: 1px solid red;
+}
+.class-b{
+ border: 1px solid blue;
+}
+.gitparent{
+  color: cyan;
 }
 </style>
