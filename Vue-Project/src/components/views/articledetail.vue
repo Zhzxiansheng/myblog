@@ -34,6 +34,11 @@ export default {
           "id":2,
           "title":"vue常用的一些小技巧",
           "content":"1.v-if: <br/> 2.v-show: <br/> 3.过滤器 "
+        },
+        {
+          "id":3,
+          "title":"vuex 的理解与应用",
+          "content":"<p>什么是vuex?</p> "
         }
       ]
     }
