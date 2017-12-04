@@ -30,6 +30,7 @@ export default {
           "title":"vuex 的理解与应用",
           "content":"<p>什么是vuex?</p> "
         }
+        
       ]
     }
   },

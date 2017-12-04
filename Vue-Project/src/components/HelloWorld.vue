@@ -65,7 +65,7 @@ export default {
       }else{
         data = JSON.stringify(data);
         console.log(data);
-        this.$router.push({ path: '/mainx/firstview?'+data })
+        this.$router.push({ path: '/mainx/firstview?' })
       }
 
     }

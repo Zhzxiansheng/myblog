@@ -1,17 +1,16 @@
 <template>
   <div class="hello">
-    
-   <el-carousel indicator-position="outside"  trigger="click" :interval="4000" :autoplay="false" height="300px" style="width:1000px;margin:auto;">
-      <el-carousel-item v-for="value in swiper" height="100%" :key="value.path">
+
+<el-carousel :interval="4000" type="card" height="300px" indicator-position="outside"  trigger="click">
+    <el-carousel-item v-for="value in swiper" height="100%" :key="value.path">
         <router-link :to="value.path"><img :src="value.img" alt="" style="width:100%;height:100%"></router-link>
       </el-carousel-item>
-    </el-carousel>
-
+  </el-carousel>
     
 
    <el-input v-model="form.name" v-show="show_4" data-num="1" v-bind:class="{ 'class-a': false, 'class-b':true }"></el-input>
 
-
+    <p>数组合并方法 Array.concat(): {{arr}}</p>
 
     <p class="gitparent">划重点：{{message}}</p>
    <el-input v-model="form.name" v-show="show_4" data-num="2"></el-input>
@@ -28,6 +27,7 @@ export default {
   data () {
     return {
       msg: '',
+      arr:[],
       form:{
         name:"根据状态设置不同的 class",
         pwd:"123"
@@ -35,17 +35,20 @@ export default {
       show_4:true,
       swiper:[
         {
-          "img": "../../../static/img/swiper.jpg",
+          "img": "http://imgs.aixifan.com/content/2017_11_03/1512268267.jpg",
           "path": "/article"
         },
-        {"img": "../../../static/img/swiper-2.jpg","path": "/article"},
-        {"img": "../../../static/img/swiper-3.jpg","path": "/article"}
+        {"img": "http://imgs.aixifan.com/content/2017_11_03/1512289555.gif?imageView2/1/w/320/h/180","path": "/article"},
+        {"img": "http://imgs.aixifan.com/content/2017_11_03/1512277894.gif?imageView2/1/w/320/h/180","path": "/article"}
       ]
     }
   },
   props:["message"],
   created :function(){
-
+    var a1 = [1,2,3];
+    var a2 = [4,5,6];
+    // 想要在前的放在 concat 前面
+    this.arr = a1.concat(a2);
   },
   mounted(){
 
