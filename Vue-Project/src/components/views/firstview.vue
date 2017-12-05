@@ -19,6 +19,11 @@
      <button type="button"  @click="xuan()">隐藏123</button>
      <p>vue组建之间传值的方式</p>
       <p>关于Vuex的使用</p>
+      <p>用canvans 生成一个图片链接</p>
+      <div><canvas  id="myCanvas" style="width:100px;height:50px;"></canvas></div>
+    <button id="saveImageBtn">生成图片</button>
+   <div> <img :src="imgUrl" alt="" style="width:100px;height:80px;"></div>
+    <input type="text" :value="imgUrl">
   </div>
 </template>
 
@@ -28,6 +33,7 @@ export default {
     return {
       msg: '',
       arr:[],
+      imgUrl:"",
       form:{
         name:"根据状态设置不同的 class",
         pwd:"123"
@@ -36,10 +42,10 @@ export default {
       swiper:[
         {
           "img": "http://imgs.aixifan.com/content/2017_11_03/1512268267.jpg",
-          "path": "/article"
+          "path": "/mainx/article"
         },
-        {"img": "http://imgs.aixifan.com/content/2017_11_03/1512289555.gif?imageView2/1/w/320/h/180","path": "/article"},
-        {"img": "http://imgs.aixifan.com/content/2017_11_03/1512277894.gif?imageView2/1/w/320/h/180","path": "/article"}
+        {"img": "http://imgs.aixifan.com/content/2017_11_03/1512289555.gif?imageView2/1/w/320/h/180","path": "/mainx/article"},
+        {"img": "http://imgs.aixifan.com/content/2017_11_03/1512277894.gif?imageView2/1/w/320/h/180","path": "/mainx/article"}
       ]
     }
   },
@@ -51,6 +57,73 @@ export default {
     this.arr = a1.concat(a2);
   },
   mounted(){
+    var _this = this;
+      // 生成图片的方法
+  function saveImageInfo() {
+      var mycanvas = document.getElementById("thecanvas");
+      var image = mycanvas.toDataURL("image/png");
+      var w = window.open('about:blank', 'image from canvas');
+      w.document.write("<img src='" + image + "' alt='from canvas'/>");
+    }  
+
+    function bindButtonEvent(element, type, handler) {
+        if (element.addEventListener) {
+          element.addEventListener(type, handler, false);
+        } else {
+          element.attachEvent('on' + type, handler);
+        }
+      }  
+      window.onload = function(){
+          
+          var canvas = document.getElementById('myCanvas');
+          var ctx = canvas.getContext('2d');
+          var imagUrls = ["./static/img/right.png", "./static/img/right.png", "./static/img/right.png"];
+          var n = 0;
+
+          loadImg();
+          var y = 0;
+          var x = 100;
+          function loadImg() {
+            if (n < imagUrls.length) {
+              var img = new Image();
+              img.src = imagUrls[n];
+              img.onload = onloaded;
+            }
+            else {
+              console.log("图片加载完了");
+              convertCanvasToImage(canvas)
+            }
+          }
+
+          function convertCanvasToImage(canvas) {
+            var image = new Image();
+            console.log(canvas.toDataURL());
+             _this.imgUrl = canvas.toDataURL();
+            image.setAttribute("crossOrigin", 'anonymous')
+            image.src = canvas.toDataURL("image/png");
+
+            // canvas-drawImage.html:34 Uncaught DOMException: Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported.
+            // 这里会报这样一份错误，是因为使用了外域的图片资源，解决方法是：搭建本地服务器
+
+            return image;
+          }
+          function onloaded(e) {
+            x = x + 100;
+            // y = y+100;
+            console.log(x, y);
+            // 这里的 xy  是下面的图的排列
+            var img = e.target;
+            console.log(e, img);
+            ctx.drawImage(img, 0, y);
+            y = y + 20;
+            n++;
+            loadImg();
+          }
+
+    // 保存图片
+      var saveButton = document.getElementById("saveImageBtn");
+      bindButtonEvent(saveButton, "click", saveImageInfo);
+    }
 
   },
   methods:{
@@ -59,7 +132,8 @@ export default {
       for(var i =0;i<arr.length;i++){
         console.log(arr[i]);
       }
-    }
+    },
+    
   }
 }
 </script>
