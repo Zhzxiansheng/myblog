@@ -10,6 +10,7 @@ import notes from '@/components/views/notes'
 import articlelist from '@/components/views/articlelist'
 import articledetail from '@/components/views/articledetail'
 import aboutme from '@/components/views/aboutme'
+import canvasLight from '@/components/views/canvasLight'
 
 
 Vue.use(Router)
@@ -40,6 +41,11 @@ export default new Router({
           path: '/mainx/firstview',
           name: 'firstview',
           component: firstview,
+        },
+        {
+          path: '/mainx/canvasLight',
+          name: 'canvasLight',
+          component: canvasLight,
         },
         {
           path: '/mainx/article',
