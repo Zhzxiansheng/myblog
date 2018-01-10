@@ -6,8 +6,20 @@
     <span>给我评价：</span>
      <el-rate v-model="value1" class="rate" @change="rate($event)"></el-rate>
 
-     
+
+
+     <ul>
+        <li class="interpreList" @click="change($event)">国际游<span>特惠</span></li>
+        <li class="chinapreList" @click="change($event)">国内游</li>
+      </ul>
+    <audio src="http://www.w3school.com.cn/i/horse.ogg" controls="controls" id="myEmbed" hidden>
+      Your browser does not support the audio element.
+      </audio>
+    <p v-for="listModel in thisList">{{listModel.name}}</p>
   </div>
+
+
+
 </template>
 
 <script>
@@ -15,7 +27,10 @@ export default {
   data(){
     return{
        value1: null,
-       msg:""
+       msg:"",
+       interpreList:[{"name":"zzz"},{"name":"sss"}],
+       chinapreList:[{"name":"aaa"},{"name":"ddd"}],
+       thisList:[{"name":"zzz"},{"name":"sss"}]
     }
   },
   created(){
@@ -24,6 +39,14 @@ export default {
     // localStorage.clear();
   },
   methods:{
+    change(e){
+      var that = this;
+      var thisDom = e.currentTarget.className;
+      that.thisList = that[thisDom]
+      var btnMusic = document.querySelector("#myEmbed")
+      btnMusic.play()
+
+    },
     rate(e){
       var vue = this;
       e = parseInt(e);

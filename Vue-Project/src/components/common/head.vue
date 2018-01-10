@@ -1,11 +1,12 @@
 <template lang="html">
   <div class="head">
     <el-header class="header">
-    <router-link to="/">
+    <router-link to="/mainx/firstview">
       <span class="logo animated  infinite">
         Z
       </span>
     </router-link>
+    <span>用户：{{user}}</span>
     <h3 class="headtitle">{{ title }}</h3>
     <span class="timecon">
       <canvas id="canvas" height="100" style="width:100%"></canvas>
@@ -20,17 +21,14 @@ import { time } from '../../../static/js/canvasTime.js'
 export default {
   data(){
     return{
-      title:""
+      title:"",
+      user:""
     }
   },
   mounted (){
     time();
+    this.user = system.user;
     console.log(this);
-    // console.log(this.prerson);
-    // this.$message({
-    //       message: '欢迎你，',
-    //       type: 'success'
-    //     });
   }
 }
 </script>

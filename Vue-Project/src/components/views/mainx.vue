@@ -6,13 +6,14 @@
         <span class="logo">
           Z
         </span>
+        <span>用户：{{user}}</span>
       </router-link>
       <span class="timecon">
         <canvas id="canvas" height="100" style="width:100%"></canvas>
       </span>
     </el-header>
         <el-container class="container">
-          <el-aside width="260px" class="aside">
+          <el-aside width="260px" class="aside" >
             <!-- 左侧导航栏 -->
             <el-menu :default-openeds="['1','2']">
               <el-submenu index="1">
@@ -23,7 +24,10 @@
                   </router-link>
                 </el-menu-item-group>
                 <router-link to="/mainx/notes">
-                  <el-menu-item index="1-3">笔记</el-menu-item>
+                  <el-menu-item index="1-2">笔记</el-menu-item>
+                </router-link>
+                <router-link to="/mainx/article">
+                  <el-menu-item index="1-3">文章</el-menu-item>
                 </router-link>
                 </el-menu-item-group>
               </el-submenu>
@@ -39,27 +43,25 @@
                 </el-menu-item-group>
 
               </el-submenu>
-              <el-submenu index="3">
-              <template slot="title"><i class="el-icon-setting"></i>关于我的</template>
-                <el-menu-item-group>
-                  <router-link to="/mainx/aboutme">
-                    <el-menu-item index="3-1">个人简历</el-menu-item>
-                  </router-link>
-                </el-menu-item-group>
-                <el-menu-item-group title="分组2">
-                  <el-menu-item index="3-3">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-submenu index="3-4">
-                  <template slot="title">选项4</template>
-                  <el-menu-item index="3-4-1">选项4-1</el-menu-item>
-                </el-submenu>
+              <router-link to="/mainx/canvasLight">
+                <el-menu-item index="3">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">灯光聚焦</span>
+                  </el-menu-item>
+              </router-link>
+             <router-link to="/mainx/aboutme">
+              <el-menu-item index="4">
+                 <i class="el-icon-setting"></i>
+                 <span slot="title">关于我的</span>
+               </el-menu-item>
+              </router-link>
               </el-submenu>
             </el-menu>
 
           </el-aside>
           <el-main>
 
-              <router-view />
+              <router-view v-bind:message="message2"/>
           </el-main>
 
         </el-container>
@@ -76,7 +78,8 @@ export default {
   name:"mainx",
   data(){
     return{
-      props:["person"],
+      message2:"父组件传下来的值",
+      user:"",
       form:{
         name:"1"
       },
@@ -93,10 +96,12 @@ export default {
     if(system.user == ""){
       system.user = "访客"
     }
-
+    system.path=location.hash;
+    console.log(system.path)
   },
   mounted (){
     console.log(system);
+    this.user = system.user;
     time();
     // console.log(this.prerson);
     this.$message({

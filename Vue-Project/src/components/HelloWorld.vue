@@ -55,9 +55,19 @@ export default {
   methods:{
     login(data){
       window.system.user = data.form.name;
-      data = JSON.stringify(data);
-      console.log(data);
-        this.$router.push({ path: '/mainx/firstview?'+data })
+      if(data.form.name == ""){
+        const h = this.$createElement;
+        this.$notify({
+         title: '提示',
+         message: '请先输入用户名',
+         type: 'warning'
+       });
+      }else{
+        data = JSON.stringify(data);
+        console.log(data);
+        this.$router.push({ path: '/mainx/firstview?' })
+      }
+
     }
   }
 }
