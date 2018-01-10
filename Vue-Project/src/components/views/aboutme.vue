@@ -5,7 +5,19 @@
 
     <span>给我评价：</span>
      <el-rate v-model="value1" class="rate" @change="rate($event)"></el-rate>
+
+
+
+     <ul>
+    <li class="interpreList" @click="change($event)">国际游<span>特惠</span></li>
+    <li class="chinapreList" @click="change($event)">国内游</li>
+  </ul>
+
+  <p v-for="listModel in thisList">{{listModel.name}}</p>
   </div>
+
+
+  
 </template>
 
 <script>
@@ -13,7 +25,10 @@ export default {
   data(){
     return{
        value1: null,
-       msg:""
+       msg:"",
+       interpreList:[{"name":"zzz"},{"name":"sss"}],
+       chinapreList:[{"name":"aaa"},{"name":"ddd"}],
+       thisList:[{"name":"zzz"},{"name":"sss"}]
     }
   },
   created(){
@@ -22,6 +37,15 @@ export default {
     // localStorage.clear();
   },
   methods:{
+    change(e){
+      var that = this;
+      var thisDom = e.currentTarget.className;
+      if (thisDom == "interpreList"){
+        that.thisList = that.interpreList
+      }else if(thisDom == "chinapreList"){
+        that.thisList = that.chinapreList
+      }
+    },
     rate(e){
       var vue = this;
       e = parseInt(e);

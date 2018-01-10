@@ -11,6 +11,7 @@ import articlelist from '@/components/views/articlelist'
 import articledetail from '@/components/views/articledetail'
 import aboutme from '@/components/views/aboutme'
 import canvasLight from '@/components/views/canvasLight'
+// import saokai from '@/components/views/saokai'
 
 
 Vue.use(Router)
