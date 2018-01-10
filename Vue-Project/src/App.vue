@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-    <router-view/>
+    <router-view :data="system"/>
   </div>
 </template>
 
@@ -21,6 +21,9 @@ export default {
     window.system={};
     window.system.author = "张浩壮";
     window.system.user = "";
+  },
+  mounted(){
+
   }
 }
 </script>

@@ -5,6 +5,8 @@
 
     <span>给我评价：</span>
      <el-rate v-model="value1" class="rate" @change="rate($event)"></el-rate>
+
+     
   </div>
 </template>
 

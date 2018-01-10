@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {system} from "../../static/js/system.js"
+// import {system} from "../../static/js/system.js"
 export default {
   name: 'HelloWorld',
   data () {
@@ -46,7 +46,7 @@ export default {
   created :function(){
   },
   mounted :function(){
-    console.log(this);
+    console.log(window.system);
     this.$message({
         message: '项目作者：'+window.system.author,
         type: 'success'
