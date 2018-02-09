@@ -3,7 +3,8 @@
     <div class="list" >
       <section class="section" v-for="item in json" :key="item.id" :id="item.id">
         <h3>{{item.title}}</h3>
-        <p v-html="item.content"></p>
+        <!-- <p v-html="item.content"></p> -->
+        <listC :content="item.content" v-on:add></listC>
         <span @click="goDetail(item.id)" class="gotodetail"></span>
       </section>
   </div>
@@ -11,7 +12,9 @@
 </template>
 
 <script>
+import  listC from './listC';
 export default {
+  
   data(){
     return{
       json:[
@@ -39,6 +42,9 @@ export default {
   },
   mounted(){
 
+  },
+  components: {
+    listC
   },
   methods:{
     goDetail(id){
