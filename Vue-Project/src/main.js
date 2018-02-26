@@ -8,6 +8,11 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Vuex from 'vuex'
 
+// loading通用组件
+import Loading from './components/loading'
+Vue.use(Loading)
+
+
 Vue.use(ElementUI)
 Vue.use(VueResource)
 Vue.use(Vuex)

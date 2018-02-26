@@ -32,6 +32,11 @@ export default {
           "id":3,
           "title":"vuex 的理解与应用",
           "content":"<p>什么是vuex?</p> "
+        },
+        {
+          "id":4,
+          "title":"vuejs实现数据双向绑定的原理",
+          "content":"<p>实现原理object.defineProperty()</p> "
         }
         
       ]

@@ -39,6 +39,11 @@ export default {
           "id":3,
           "title":"vuex 的理解与应用",
           "content":"<p>什么是vuex?</p><p>https://vuex.vuejs.org/zh-cn/state.html; https://segmentfault.com/a/1190000009404727</p> "
+        },
+        {
+          "id":4,
+          "title":"vue实现数据双向绑定的原理",
+          "content":"<p>Objec.definProperty()它可以来控制一个对象属性的一些特有操作，比如读写权、是否可以枚举</p><p>它有两个描述属性：get/set</p><p>我们会用Object.defineProperty()设置对象，通过get和set进行操作，get是在读取这个对象的一个属性的值的时候触发的函数；set是在设置对象中这个属性的值触发的函数</p>"
         }
       ]
     }

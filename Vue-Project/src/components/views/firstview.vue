@@ -2,42 +2,45 @@
   <div class="hello">
 
 <el-carousel :interval="4000" type="card" height="300px" indicator-position="outside"  trigger="click">
-    <el-carousel-item v-for="value in swiper" height="100%" :key="value.path">
+    <el-carousel-item v-for="(value,index) in swiper" height="100%" :key="index">
         <router-link :to="value.path"><img :src="value.img" alt="" style="width:100%;height:100%"></router-link>
       </el-carousel-item>
   </el-carousel>
-    
+  <Loading v-show="loading"></Loading>
 
-   <el-input v-model="form.name" v-show="show_4" data-num="1" v-bind:class="{ 'class-a': false, 'class-b':true }"></el-input>
+   <el-input v-model="form.name" v-show="show_4" data-num="1" v-bind:class="{ 'class-a': true, 'class-b':false }"></el-input>
 
     <p>数组合并方法 Array.concat(): {{arr}}</p>
 
     <p class="gitparent">划重点：{{message}}</p>
-   <el-input v-model="form.name" v-show="show_4" data-num="2"></el-input>
-   <el-input v-model="form.name" v-show="show_4" data-num="3"></el-input>
-   <el-input v-model="form.name" v-show="show_4"></el-input>
-     <button type="button"  @click="xuan()">隐藏123</button>
-     <p>vue组建之间传值的方式</p>
-      <p>关于Vuex的使用</p>
+     
+    <button type="button"  @click="loadVue()">调用loading组件</button>
+    <!-- <toast v-if="show"> </toast> -->
       <p>用canvans 生成一个图片链接</p>
       <div><canvas  id="myCanvas" style="width:100px;height:50px;"></canvas></div>
     <button id="saveImageBtn">生成图片</button>
    <div> <img :src="imgUrl" alt="" style="width:100px;height:80px;"></div>
-    <input type="text" :value="imgUrl">
+   生成图片的链接：
+   <el-input v-model="imgUrl"></el-input>
+    <!-- <input type="text" :value="imgUrl"> -->
   </div>
 </template>
 
 <script>
+ import toast from '../toast';        //引入toast函数  
+
 export default {
   data () {
     return {
       msg: '',
       arr:[],
       imgUrl:"",
+      loading:false,
       form:{
         name:"根据状态设置不同的 class",
         pwd:"123"
       },
+      show:false,
       show_4:true,
       swiper:[
         {
@@ -58,6 +61,7 @@ export default {
   },
   mounted(){
     var _this = this;
+    
       // 生成图片的方法
   function saveImageInfo() {
       var mycanvas = document.getElementById("thecanvas");
@@ -127,11 +131,12 @@ export default {
 
   },
   methods:{
-    xuan(){
-      var arr = [1,2,3];
-      for(var i =0;i<arr.length;i++){
-        console.log(arr[i]);
-      }
+    loadVue(){
+     var _this = this;
+     this.loading = true;
+     setTimeout(function(){
+      _this.loading = false;
+    },2000)
     },
     
   }
