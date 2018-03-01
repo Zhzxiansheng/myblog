@@ -16,16 +16,33 @@
       Your browser does not support the audio element.
       </audio>
     <p v-for="listModel in thisList">{{listModel.name}}</p>
+
+
+   <p>
+     <button @click="dialog()">调用询问弹框</button>
+    </p>
+    <v-dialog :dialog-msg="dialogMsg" v-show="dialogs"  @cancel="cancal" @confirm="confirm"></v-dialog>
+
+  <div class="alertContsainer ">
+    <p> <button @click="getAlert()">调用弹窗</button> </p>
+    <v-alert v-show="orAlert" :alertMsg="alertMsg"></v-alert>
   </div>
 
-
+  </div>
+  
 
 </template>
 
 <script>
+import dialog from '../common/dialog'
+import alert from '../common/alert'
 export default {
   data(){
     return{
+      orAlert:false,
+      alertMsg:"弹窗信息",
+       dialogMsg:"询问信息?",
+       dialogs:false,
        value1: null,
        msg:"",
        interpreList:[{"name":"zzz"},{"name":"sss"}],
@@ -38,6 +55,10 @@ export default {
     this.value1 = parseInt(storage);
     // localStorage.clear();
   },
+  components:{
+    'v-dialog':dialog,
+    'v-alert':alert
+  },
   methods:{
     change(e){
       var that = this;
@@ -45,7 +66,25 @@ export default {
       that.thisList = that[thisDom]
       var btnMusic = document.querySelector("#myEmbed")
       btnMusic.play()
-
+    },
+    dialog(){
+      var that = this;
+      that.dialogs = true;
+    },
+    cancal(){
+      var that = this;
+      that.dialogs = false;
+    },
+    confirm(){
+      var that = this;
+      that.dialogs = false;
+    },
+    getAlert(){
+      var that = this;
+      this.orAlert = true;
+      setTimeout(function(){
+        that.orAlert = false;
+      },2000)
     },
     rate(e){
       var vue = this;

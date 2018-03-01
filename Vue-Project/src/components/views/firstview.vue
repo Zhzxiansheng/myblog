@@ -15,6 +15,9 @@
     <p class="gitparent">划重点：{{message}}</p>
      
     <button type="button"  @click="loadVue()">调用loading组件</button>
+    <p>var arr = [10,58,40,88,69,99]</p>
+    <button type="button"  @click="getquickSort(sortArr)">数组快排</button>
+    <el-input v-model="getSrotArr"></el-input>
     <!-- <toast v-if="show"> </toast> -->
       <p>用canvans 生成一个图片链接</p>
       <div><canvas  id="myCanvas" style="width:100px;height:50px;"></canvas></div>
@@ -34,6 +37,8 @@ export default {
     return {
       msg: '',
       arr:[],
+      sortArr:[10,58,40,88,69,99],
+      getSrotArr:"",
       imgUrl:"",
       loading:false,
       form:{
@@ -138,6 +143,33 @@ export default {
       _this.loading = false;
     },2000)
     },
+    quickSort(arr){
+      var _this = this;
+      // console.log(arr);
+  　　if (arr.length <= 1) { return arr; }
+  　　var pivotIndex = Math.floor(arr.length / 2);
+      // console.log('pivotIndex : '+pivotIndex);
+  　　var pivot = arr.splice(pivotIndex, 1)[0];
+      // console.log("pivot : "+pivot);
+  　　var left = [];
+  　　var right = [];
+  　　for (var i = 0; i < arr.length; i++){
+  　　　　if (arr[i] < pivot) {
+  　　　　　　left.push(arr[i]);
+  　　　　} else {
+  　　　　　　right.push(arr[i]);
+  　　　　}
+  　　}
+      console.log("left : "+　left);
+      console.log("right : "+right);
+      // console.log(_this.quickSort(left).concat([pivot],_this. quickSort(right)));
+  　　return _this.quickSort(left).concat([pivot], _this.quickSort(right));
+   },
+    getquickSort(arr){
+      console.log(this.quickSort(arr));
+      this.getSrotArr = " "+this.quickSort(arr)+" ";
+      return this.quickSort(arr);
+    }
     
   }
 }
