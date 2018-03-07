@@ -42,8 +42,41 @@ export default {
         },
         {
           "id":4,
-          "title":"Grid布局",
-          "content":"<p>什么是Grid布局?</p> <p>Grid布局：网格单元格布局</p> display: grid;grid-template-columns: 100px 10px 100px 10px 100px 10px 100px;grid-template-rows: auto 10px auto 10px auto; grid-column-start: 1;grid-column-end: 2; grid-row-start: 1;grid-row-end: 2;"
+          "title":"vue实现数据双向绑定的原理",
+          "content":"<p>Objec.definProperty()它可以来控制一个对象属性的一些特有操作，比如读写权、是否可以枚举</p><p>它有两个描述属性：get/set</p><p>我们会用Object.defineProperty()设置对象，通过get和set进行操作，get是在读取这个对象的一个属性的值的时候触发的函数；set是在设置对象中这个属性的值触发的函数</p>"
+        },
+        {
+          "id":5,
+          "title":"数组快排的实现",
+          "content":`var quickSort = function(arr) {
+                     <br/>
+                    　　if (arr.length <= 1) { return arr; }
+                       <br/>
+                    　　var pivotIndex = Math.floor(arr.length / 2);
+                        <br/>
+                    　　var pivot = arr.splice(pivotIndex, 1)[0];
+                        <br/>
+                    　　var left = [];
+                        <br/>
+                    　　var right = [];
+                        <br/>
+                    　　for (var i = 0; i < arr.length; i++){
+                          <br/>
+                    　　　　if (arr[i] < pivot) {
+                            <br/>
+                    　　　　　　left.push(arr[i]);
+                            <br/>
+                    　　　　} else {
+                            <br/>
+                    　　　　　　right.push(arr[i]);
+                            <br/>
+                    　　　　}
+                          <br/>
+                    　　}
+                        <br/>
+                    　　return quickSort(left).concat([pivot], quickSort(right));
+                        <br/>
+                    };`
         }
         
       ]

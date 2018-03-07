@@ -3,7 +3,8 @@
     <div class="list" >
       <section class="section" v-for="item in json" :key="item.id" :id="item.id">
         <h3>{{item.title}}</h3>
-        <p v-html="item.content"></p>
+        <!-- <p v-html="item.content"></p> -->
+        <listC :content="item.content" v-on:add></listC>
         <span @click="goDetail(item.id)" class="gotodetail"></span>
       </section>
   </div>
@@ -11,7 +12,9 @@
 </template>
 
 <script>
+import  listC from './listC';
 export default {
+  
   data(){
     return{
       json:[
@@ -32,8 +35,13 @@ export default {
         },
         {
           "id":4,
-          "title":"Grid布局",
-          "content":"<p>什么是Grid布局?</p> <p>Grid布局：网格单元格布局</p>"
+          "title":"vuejs实现数据双向绑定的原理",
+          "content":"<p>实现原理object.defineProperty()</p> "
+        },
+        {
+          "id":5,
+          "title":"数组快排的实现",
+          "content":"将数组切割成两个数组，对这两个数组"
         }
         
       ]
@@ -44,6 +52,9 @@ export default {
   },
   mounted(){
 
+  },
+  components: {
+    listC
   },
   methods:{
     goDetail(id){

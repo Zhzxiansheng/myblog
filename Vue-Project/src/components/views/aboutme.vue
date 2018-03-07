@@ -5,27 +5,47 @@
 
     <span>给我评价：</span>
      <el-rate v-model="value1" class="rate" @change="rate($event)"></el-rate>
+     
 
-
-
-     <ul>
-        <li class="interpreList" @click="change($event)">国际游<span>特惠</span></li>
-        <li class="chinapreList" @click="change($event)">国内游</li>
+     <p>点击tab切换，并调起点击音乐</p>
+     <ul class="tab">
+        <li class="interpreList" @click="change($event)">TAB1</li>
+        <li class="chinapreList" @click="change($event)">TAB2</li>
       </ul>
-    <audio src="http://www.w3school.com.cn/i/horse.ogg" controls="controls" id="myEmbed" hidden>
+      
+    <audio src="/static/btn.mp3" controls="controls" id="myEmbed" hidden>
       Your browser does not support the audio element.
       </audio>
-    <p v-for="(listModel,index) in thisList" >{{index.name}}</p>
+    <div class="tabConent">
+      <p v-for="list in thisList">{{list.name}}</p>
+    </div>
+
+
+   <p>
+     <button @click="dialog()">调用询问弹框</button>
+    </p>
+    <v-dialog :dialog-msg="dialogMsg" v-show="dialogs"  @cancel="cancal" @confirm="confirm"></v-dialog>
+
+  <div class="alertContsainer ">
+    <p> <button @click="getAlert()">调用弹窗</button> </p>
+    <v-alert v-show="orAlert" :alertMsg="alertMsg"></v-alert>
   </div>
-
-
+ <img src="/static/img/timg.jpg" />
+  </div>
+  
 
 </template>
 
 <script>
+import dialog from '../common/dialog'
+import alert from '../common/alert'
 export default {
   data(){
     return{
+      orAlert:false,
+      alertMsg:"弹窗信息",
+       dialogMsg:"询问信息?",
+       dialogs:false,
        value1: null,
        msg:"",
        interpreList:[{"name":"zzz"},{"name":"sss"}],
@@ -38,6 +58,10 @@ export default {
     this.value1 = parseInt(storage);
     // localStorage.clear();
   },
+  components:{
+    'v-dialog':dialog,
+    'v-alert':alert
+  },
   methods:{
     change(e){
       var that = this;
@@ -45,7 +69,36 @@ export default {
       that.thisList = that[thisDom]
       var btnMusic = document.querySelector("#myEmbed")
       btnMusic.play()
-
+    },
+    dialog(){
+      var that = this;
+      that.dialogs = true;
+    },
+    cancal(){
+      var that = this;
+      that.dialogs = false;
+      that.alertMsg = "你点击了关闭询问框";
+      this.orAlert = true;
+      setTimeout(function(){
+        that.orAlert = false;
+      },2000)
+    },
+    confirm(){
+      var that = this;
+      that.dialogs = false;
+      that.alertMsg = "你点击了确定按钮";
+      this.orAlert = true;
+      setTimeout(function(){
+        that.orAlert = false;
+      },2000)
+    },
+    getAlert(){
+      var that = this;
+      this.orAlert = true;
+      that.alertMsg = "调用toast提示";
+      setTimeout(function(){
+        that.orAlert = false;
+      },2000)
     },
     rate(e){
       var vue = this;
@@ -74,5 +127,23 @@ export default {
 <style lang="css" scoped>
 .rate{
   display: inline-block;
+}
+.tab{
+  list-style: none;
+  overflow: hidden;
+  padding: 0;
+}
+.tab li{
+  float: left;
+  width: 100px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.tabConent{
+  
 }
 </style>
