@@ -41,7 +41,7 @@ export default {
       show_4:true,
       swiper:[
         {
-          "img": "http://imgs.aixifan.com/content/2017_11_03/1512268267.jpg",
+          "img": "../static/img/swiper.jpg",
           "path": "/mainx/article"
         },
         {"img": "http://imgs.aixifan.com/content/2017_11_03/1512289555.gif?imageView2/1/w/320/h/180","path": "/mainx/article"},

@@ -39,7 +39,13 @@ export default {
           "id":3,
           "title":"vuex 的理解与应用",
           "content":"<p>什么是vuex?</p><p>https://vuex.vuejs.org/zh-cn/state.html; https://segmentfault.com/a/1190000009404727</p> "
+        },
+        {
+          "id":4,
+          "title":"Grid布局",
+          "content":"<p>什么是Grid布局?</p> <p>Grid布局：网格单元格布局</p> display: grid;grid-template-columns: 100px 10px 100px 10px 100px 10px 100px;grid-template-rows: auto 10px auto 10px auto; grid-column-start: 1;grid-column-end: 2; grid-row-start: 1;grid-row-end: 2;"
         }
+        
       ]
     }
   },

@@ -15,7 +15,7 @@
     <audio src="http://www.w3school.com.cn/i/horse.ogg" controls="controls" id="myEmbed" hidden>
       Your browser does not support the audio element.
       </audio>
-    <p v-for="listModel in thisList">{{listModel.name}}</p>
+    <p v-for="(listModel,index) in thisList" >{{index.name}}</p>
   </div>
 
 

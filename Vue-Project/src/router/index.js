@@ -11,7 +11,7 @@ import articlelist from '@/components/views/articlelist'
 import articledetail from '@/components/views/articledetail'
 import aboutme from '@/components/views/aboutme'
 import canvasLight from '@/components/views/canvasLight'
-// import saokai from '@/components/views/saokai'
+import morebtn from '@/components/views/morebtn'
 
 
 Vue.use(Router)
@@ -27,6 +27,11 @@ export default new Router({
       path: '/view',
       name: '博客',
       component: view
+    },
+    {
+      path: '/morebtn',
+      name: 'morebtn',
+      component: morebtn
     },
     {
       path: '/articledetail',
