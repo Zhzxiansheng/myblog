@@ -27,6 +27,8 @@
     <p> <button @click="getAlert()">调用弹窗</button> </p>
     <v-alert v-show="orAlert" :alertMsg="alertMsg"></v-alert>
   </div>
+  <p>{{com}}</p>
+  <p>{{reservecom}}</p>
 
   </div>
   
@@ -47,7 +49,8 @@ export default {
        msg:"",
        interpreList:[{"name":"zzz"},{"name":"sss"}],
        chinapreList:[{"name":"aaa"},{"name":"ddd"}],
-       thisList:[{"name":"zzz"},{"name":"sss"}]
+       thisList:[{"name":"zzz"},{"name":"sss"}],
+       com:"反转信息computed"
     }
   },
   created(){
@@ -55,9 +58,17 @@ export default {
     this.value1 = parseInt(storage);
     // localStorage.clear();
   },
+  computed:{
+    reservecom:function(){
+      return this.com.split('').reverse().join('')
+    }
+  },
   components:{
     'v-dialog':dialog,
     'v-alert':alert
+  },
+  mounted(){
+
   },
   methods:{
     change(e){
