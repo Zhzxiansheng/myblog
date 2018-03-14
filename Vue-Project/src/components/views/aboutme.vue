@@ -30,7 +30,8 @@
     <p> <button @click="getAlert()">调用弹窗</button> </p>
     <v-alert v-show="orAlert" :alertMsg="alertMsg"></v-alert>
   </div>
- <img src="/static/img/timg.jpg" />
+  <el-button type="primary" plain> <router-link to="/btnStatus">不同状态展示不同按钮</router-link> </el-button>
+ <!-- <img src="/static/img/timg.jpg" /> -->
   </div>
   
 
@@ -44,7 +45,7 @@ export default {
     return{
       orAlert:false,
       alertMsg:"弹窗信息",
-       dialogMsg:"询问信息?",
+       dialogMsg:"这个人是不是很帅?",
        dialogs:false,
        value1: null,
        msg:"",
@@ -125,6 +126,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+a{
+  text-decoration: none;
+  color: #000000;
+}
 .rate{
   display: inline-block;
 }

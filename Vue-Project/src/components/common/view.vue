@@ -1,7 +1,7 @@
 <template>
 
   <div class="container">
-    <router-link to="/">
+    <router-link to="/mainx/firstview">
       <span class="logo">
         Z
       </span>
