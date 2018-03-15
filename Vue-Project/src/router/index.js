@@ -41,7 +41,7 @@ export default new Router({
       component: btnStatus
     },
     {
-      path: '/articledetail',
+      path: '/articledetail/:id',
       name: '文章详情',
       component: articledetail
     },

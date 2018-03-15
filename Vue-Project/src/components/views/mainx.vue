@@ -29,7 +29,6 @@
                 <router-link to="/mainx/article">
                   <el-menu-item index="1-3">文章</el-menu-item>
                 </router-link>
-                </el-menu-item-group>
               </el-submenu>
               <el-submenu index="2">
                   <template slot="title"><i class="el-icon-star-off"></i>知乎</template>
@@ -55,7 +54,6 @@
                  <span slot="title">关于我的</span>
                </el-menu-item>
               </router-link>
-              </el-submenu>
             </el-menu>
 
           </el-aside>
@@ -97,10 +95,8 @@ export default {
       system.user = "访客"
     }
     system.path=location.hash;
-    console.log(system.path)
   },
   mounted (){
-    console.log(system);
     this.user = system.user;
     time();
     // console.log(this.prerson);

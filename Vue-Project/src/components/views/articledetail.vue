@@ -83,7 +83,9 @@ export default {
     }
   },
   mounted(){
-    this.articid =location.hash.substr(-1);
+    // this.articid =location.hash.substr(-1);
+    this.articid = this.$route.params.id;
+    console.log(this.$route.params);
   },
   components:{
     top

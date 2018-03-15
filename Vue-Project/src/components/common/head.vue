@@ -28,7 +28,6 @@ export default {
   mounted (){
     time();
     this.user = system.user;
-    console.log(this);
   }
 }
 </script>
