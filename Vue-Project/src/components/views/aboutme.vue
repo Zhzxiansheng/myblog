@@ -32,6 +32,13 @@
   </div>
   <el-button type="primary" plain> <router-link to="/btnStatus">不同状态展示不同按钮</router-link> </el-button>
  <!-- <img src="/static/img/timg.jpg" /> -->
+  <el-button type="primary" @click="slotClick()">使用slot的组件</el-button>
+    <div class="slot">
+      <slotChild v-show="slotShow" @closeSlot="closeSlot">
+        <h3 slot="title">slot的使用</h3> 
+        <p slot="one">修改one内容</p>
+    </slotChild>
+    </div>
   </div>
   
 
@@ -40,6 +47,7 @@
 <script>
 import dialog from '../common/dialog'
 import alert from '../common/alert'
+import slotChild from '../common/slot'
 export default {
   data(){
     return{
@@ -48,6 +56,7 @@ export default {
        dialogMsg:"这个人是不是很帅?",
        dialogs:false,
        value1: null,
+       slotShow:false,
        msg:"",
        interpreList:[{"name":"zzz"},{"name":"sss"}],
        chinapreList:[{"name":"aaa"},{"name":"ddd"}],
@@ -61,7 +70,8 @@ export default {
   },
   components:{
     'v-dialog':dialog,
-    'v-alert':alert
+    'v-alert':alert,
+    'slotChild':slotChild
   },
   methods:{
     change(e){
@@ -74,6 +84,14 @@ export default {
     dialog(){
       var that = this;
       that.dialogs = true;
+    },
+    slotClick(){
+      var that = this;
+      that.slotShow = true;
+    },
+    closeSlot(){
+      var that = this;
+      that.slotShow = false;
     },
     cancal(){
       var that = this;
