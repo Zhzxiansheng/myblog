@@ -34,13 +34,13 @@
     .alert-wrap {
             position: fixed;
             width: 250px;
-            height: 90px;
-            line-height: 90px;
+            height: 70px;
+            line-height: 70px;
             text-align: center;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            border-radius: 45px;
+            border-radius: 10px;
             background: rgba(0, 0, 0, 0.6);
         }
 </style>

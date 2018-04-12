@@ -2,6 +2,7 @@
     <div class="dialog">
         <div class="mask"></div>
         <div class="dialog-wrap">
+            <div class="closebtn" @click="cancal">×</div>
             <div class="text">
                 {{dialogMsg}}
                 <!--确定报名？-->
@@ -47,7 +48,7 @@ export default {
         box-sizing: border-box;
         padding: 40px;
         width: 600px;
-        height: 250px;
+        height: 240px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -65,14 +66,20 @@ export default {
             display: flex;
             position: absolute;
             right: 40px;
-            bottom: 40px;
-            
+            bottom: 20px;
             }
+.closebtn{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
 .btn {
     padding: 10px 25px;
     font-size: 14px;
     color: #ffffff;
-    background-color: #eeeeee;
+    background-color: #cccccc;
     border-radius: 5px;
     margin-right: 10px;
     }

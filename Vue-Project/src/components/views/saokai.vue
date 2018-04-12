@@ -128,75 +128,57 @@
 <template>
   <div class="preferential">
     <div class="preferential_box">
-      <ul class="preferential_list">
-          <!-- 先遍历国内 -->
-        <li v-for="(tab,index) in chinapreList">{{tab.org_city_name}}<span>特惠</span></li>
+      <ul class="preferential_list" >
+        <li :class="interpreList" @click="change(class)">国际游<span>特惠</span></li>
+        <li :class="chinapreList" @click="change(class)">国内游<span v-if="!showTab">特惠</span></li>
       </ul>
-      <!-- 在遍历国外，这里写两个ul  把， 但是样式一样就行， 你直接复制结构 -->
-      <ul class="preferential_list">
-          <!-- 先遍历国内 -->
-        <li v-for="(tab,index) in interpreList">{{tab.org_city_name}}<span>特惠</span></li>
-      </ul>
+      <!-- 先遍历国内 -->
+        <!-- <li v-for="(tab,index) in interpreList">{{tab.org_city_name}}<span>特惠</span></li>
+      </ul> -->
     </div>
-    <div class="preferential_content" >
-      <a class="preferential_data" href=" " target="_blank" v-for="(item,index) in listHead">
+    <div class="preferential_content" v-for =" (listModel,index) in  thisList">
+      <a class="preferential_data" :href="listModel.url " target="_blank" >
         <div class="preferential_left">
-          <p>北京-东京</p >
-          <p>< img src="../img/Icon_03.png"></img><span>国航CA1708</span><span>01-08 周一</span></p >
+          <p>{{listModel.org_city_name}}</p >
+          <p>< img src="../img/Icon_03.png"></img><span>{{listModel.dst_city_name}}</span><span>{{listModel.dep_date}}</span></p >
         </div>
-        <div class="preferential_right">¥202<span>起</span>
-        </div>
-      </ a>
-      <a class="preferential_data" href="#" target="_blank">
-        <div class="preferential_left">
-          <p>北京-东京</p >
-          <p>< img src="../img/Icon_03.png"></img><span>国航CA1708</span><span>01-08 周一</span></p >
-        </div>
-        <div class="preferential_right">¥202<span>起</span>
-        </div>
-      </ a>
-      <a class="preferential_data" href="#" target="_blank">
-        <div class="preferential_left">
-          <p>北京-东京</p >
-          <p>< img src="../img/Icon_03.png"></img><span>国航CA1708</span><span>01-08 周一</span></p >
-        </div>
-        <div class="preferential_right">¥202<span>起</span>
-        </div>
+        <div class="preferential_right">¥{{listModel.price}}<span>起</span></div>
       </ a>
     </div>
     <div class="preferential_tail">
-        < a href="#" target="_blank">查看更多特惠线路<span></span>
-        </ a>
+      < a href="#" target="_blank">查看更多特惠线路<span></span></ a>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
-  export default{
-    props:['flightPreferential'],
-    data(){
-      return{
-          listHead:'',
-          chinapreList:[],
-          interpreList:[],
-
-      }
-
-    },
-    created(){
-
-    },
-    mounted(){
-      var _this = this;
-      _this.$ajax.get(_this.UTIL.AJAX_BASEURL+'/sales/activity/flightpromotion/index/discountList').then((item)=>{
-          _this.chinapreList = item.data.china;  // 你这里赋值， 上面一定要定义， 不然赋值给谁啊， 你结构要用这个的
-          _this.interpreList = item.data.inter;
-        }).catch((e)=>{})
-    },
-    methods:{
-      listData:function(){
-
-      }
+export default{
+props:['flightPreferential'],
+  data(){
+    return{
+      listHead:'',
+      showTab:true,
+      chinapreList:[],
+      interpreList:[
+      thisList:interpreList,
     }
+
+  },
+  created(){
+
+  },
+  mounted(){
+    var _this = this;
+    _this.$ajax.get(_this.UTIL.AJAX_BASEURL+'/sales/activity/flightpromotion/index/discountList').then((item)=>{
+    _this.chinapreList = item.data.china; // 你这里赋值， 上面一定要定义， 不然赋值给谁啊， 你结构要用这个的
+    _this.interpreList = item.data.inter;
+    _this.thisList  = item.data.inter;
+    }).catch((e)=>{})
+  },
+  methods:{
+    var that = this
+    change(class){
+      that.thisList = class;
   }
+}
 </script>

@@ -78,11 +78,18 @@ export default {
                         <br/>
                     };`
         }
+        
       ]
     }
   },
   mounted(){
-    this.articid =location.hash.substr(-1);
+    // this.articid =location.hash.substr(-1);
+    this.articid = this.$route.query.id;
+    console.log("this.$route.query: ");
+    console.log(this.$route.query);
+    console.log("this.$route.params: ");
+    console.log(this.$route.params);
+    
   },
   components:{
     top

@@ -26,6 +26,12 @@
    生成图片的链接：
    <el-input v-model="imgUrl"></el-input>
     <!-- <input type="text" :value="imgUrl"> -->
+
+    <p>
+     <router-link :to="{ path: '/mainx/aboutme', query: { plan: 'private' }}"> 通过router-link传值 query</router-link> 
+     <span>去"关于我的"查看,会发现在网址上有?plan=private字段，能够通过this.$route.query.plan获取</span>
+    </p>
+     
   </div>
 </template>
 
@@ -49,7 +55,7 @@ export default {
       show_4:true,
       swiper:[
         {
-          "img": "http://imgs.aixifan.com/content/2017_11_03/1512268267.jpg",
+          "img": "../static/img/swiper.jpg",
           "path": "/mainx/article"
         },
         {"img": "http://imgs.aixifan.com/content/2017_11_03/1512289555.gif?imageView2/1/w/320/h/180","path": "/mainx/article"},

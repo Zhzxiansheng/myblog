@@ -5,17 +5,20 @@
 
     <span>给我评价：</span>
      <el-rate v-model="value1" class="rate" @change="rate($event)"></el-rate>
+     
 
-
-
-     <ul>
-        <li class="interpreList" @click="change($event)">国际游<span>特惠</span></li>
-        <li class="chinapreList" @click="change($event)">国内游</li>
+     <p>点击tab切换，并调起点击音乐</p>
+     <ul class="tab">
+        <li class="interpreList" @click="change($event)">TAB1</li>
+        <li class="chinapreList" @click="change($event)">TAB2</li>
       </ul>
-    <audio src="http://www.w3school.com.cn/i/horse.ogg" controls="controls" id="myEmbed" hidden>
+      
+    <audio src="/static/btn.mp3" controls="controls" id="myEmbed" hidden>
       Your browser does not support the audio element.
       </audio>
-    <p v-for="listModel in thisList">{{listModel.name}}</p>
+    <div class="tabConent">
+      <p v-for="list in thisList">{{list.name}}</p>
+    </div>
 
 
    <p>
@@ -29,7 +32,12 @@
   </div>
   <p>{{com}}</p>
   <p>{{reservecom}}</p>
+  <p>{{now}}</p>
 
+  <h4>通过this.$route.query获取的值</h4>
+  <el-input :value="routerQuery"></el-input>
+
+ <!-- <img src="/static/img/timg.jpg" /> -->
   </div>
   
 
@@ -50,7 +58,8 @@ export default {
        interpreList:[{"name":"zzz"},{"name":"sss"}],
        chinapreList:[{"name":"aaa"},{"name":"ddd"}],
        thisList:[{"name":"zzz"},{"name":"sss"}],
-       com:"反转信息computed"
+       com:"反转信息computed",
+       routerQuery:"",
     }
   },
   created(){
@@ -61,6 +70,9 @@ export default {
   computed:{
     reservecom:function(){
       return this.com.split('').reverse().join('')
+    },
+    now: function () {
+      return Date.now()
     }
   },
   components:{
@@ -68,15 +80,17 @@ export default {
     'v-alert':alert
   },
   mounted(){
-
+   this.routerQuery = JSON.stringify(this.$route.query);
+   console.log(this.$route.query);
   },
   methods:{
     change(e){
       var that = this;
-      var thisDom = e.currentTarget.className;
-      that.thisList = that[thisDom]
-      var btnMusic = document.querySelector("#myEmbed")
-      btnMusic.play()
+      var thisClass = e.currentTarget.className;
+      var thisDom = e.currentTarget;
+      that.thisList = that[thisClass];
+      var btnMusic = document.querySelector("#myEmbed");
+      btnMusic.play();
     },
     dialog(){
       var that = this;
@@ -85,14 +99,25 @@ export default {
     cancal(){
       var that = this;
       that.dialogs = false;
+      that.alertMsg = "你点击了关闭询问框";
+      this.orAlert = true;
+      setTimeout(function(){
+        that.orAlert = false;
+      },2000)
     },
     confirm(){
       var that = this;
       that.dialogs = false;
+      that.alertMsg = "你点击了确定按钮";
+      this.orAlert = true;
+      setTimeout(function(){
+        that.orAlert = false;
+      },2000)
     },
     getAlert(){
       var that = this;
       this.orAlert = true;
+      that.alertMsg = "调用toast提示";
       setTimeout(function(){
         that.orAlert = false;
       },2000)
@@ -124,5 +149,23 @@ export default {
 <style lang="css" scoped>
 .rate{
   display: inline-block;
+}
+.tab{
+  list-style: none;
+  overflow: hidden;
+  padding: 0;
+}
+.tab li{
+  float: left;
+  width: 100px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.tabConent{
+  
 }
 </style>
