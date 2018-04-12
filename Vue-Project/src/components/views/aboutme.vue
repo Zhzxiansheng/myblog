@@ -69,7 +69,7 @@ export default {
        value1: null,
        slotShow:false,
        msg:"",
-       menuIndex: 0,
+       menuIndex:0,
        navlist: ['手机点餐', '手机外卖', '网络预订'],
        disabled:false
     }
@@ -131,15 +131,16 @@ export default {
     },
     getAlert(){
       var that = this;
-      this.orAlert = true;
       that.alertMsg = "调用toast提示";
-      that.disabled = true;
-      clearTimeout(timer);
-      let timer = setTimeout(function(){
-        that.orAlert = false;
-        that.disabled = false;
+      this.orAlert = true;
+      
+      // that.disabled = true;
+      // clearTimeout(timer);
+      // let timer = setTimeout(function(){
+      //   that.orAlert = false;
+      //   that.disabled = false;
         
-      },3000)
+      // },3000)
     },
     rate(e){
       var vue = this;
