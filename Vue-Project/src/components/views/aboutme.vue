@@ -9,15 +9,24 @@
 
      <p>点击tab切换，并调起点击音乐</p>
      <ul class="tab">
-        <li class="interpreList" @click="change($event)">TAB1</li>
-        <li class="chinapreList" @click="change($event)">TAB2</li>
+        <!-- <li id="interpreList" @click="change($event)">TAB1</li>
+        <li id="chinapreList" @click="change($event)">TAB2</li> -->
+        <li v-for="(item,index) in navlist" :class="{active:!(index-menuIndex)}"  @click='menuShow(index)'  v-text="item" >{{item}}</li>
       </ul>
       
     <audio src="/static/btn.mp3" controls="controls" id="myEmbed" hidden>
       Your browser does not support the audio element.
       </audio>
     <div class="tabConent">
-      <p v-for="list in thisList">{{list.name}}</p>
+      <div v-show='menuIndex=0'>
+          <p>第一内容</p>
+        </div>
+        <div v-show='menuIndex=1'>
+          <p>第二内容</p>
+        </div>
+        <div v-show='menuIndex=2'>
+         <p>第三内容</p>
+        </div>
     </div>
 
 
@@ -27,17 +36,18 @@
     <v-dialog :dialog-msg="dialogMsg" v-show="dialogs"  @cancel="cancal" @confirm="confirm"></v-dialog>
 
   <div class="alertContsainer ">
-    <p> <button @click="getAlert()">调用弹窗</button> </p>
+    <p> <button @click="getAlert()" :disabled="disabled">调用弹窗</button> </p>
     <v-alert v-show="orAlert" :alertMsg="alertMsg"></v-alert>
   </div>
-  <p>{{com}}</p>
-  <p>{{reservecom}}</p>
-  <p>{{now}}</p>
-
-  <h4>通过this.$route.query获取的值</h4>
-  <el-input :value="routerQuery"></el-input>
-
+  <el-button type="primary" plain> <router-link to="/btnStatus">不同状态展示不同按钮</router-link> </el-button>
  <!-- <img src="/static/img/timg.jpg" /> -->
+  <el-button type="primary" @click="slotClick()">使用slot的组件</el-button>
+    <div class="slot">
+      <slotChild v-show="slotShow" @closeSlot="closeSlot">
+        <h3 slot="title">slot的使用</h3> 
+        <p slot="one">修改one内容</p>
+    </slotChild>
+    </div>
   </div>
   
 
@@ -46,20 +56,22 @@
 <script>
 import dialog from '../common/dialog'
 import alert from '../common/alert'
+import slotChild from '../common/slot'
+var json1 = [{"name":"zzz"},{"name":"sss"}];
+var json2 = [{"name":"aaa"},{"name":"ddd"}];
 export default {
   data(){
     return{
       orAlert:false,
       alertMsg:"弹窗信息",
-       dialogMsg:"询问信息?",
+       dialogMsg:"这个人是不是很帅?",
        dialogs:false,
        value1: null,
+       slotShow:false,
        msg:"",
-       interpreList:[{"name":"zzz"},{"name":"sss"}],
-       chinapreList:[{"name":"aaa"},{"name":"ddd"}],
-       thisList:[{"name":"zzz"},{"name":"sss"}],
-       com:"反转信息computed",
-       routerQuery:"",
+       menuIndex: 0,
+       navlist: ['手机点餐', '手机外卖', '网络预订'],
+       disabled:false
     }
   },
   created(){
@@ -67,34 +79,37 @@ export default {
     this.value1 = parseInt(storage);
     // localStorage.clear();
   },
-  computed:{
-    reservecom:function(){
-      return this.com.split('').reverse().join('')
-    },
-    now: function () {
-      return Date.now()
-    }
+  mounted(){
+  
   },
   components:{
     'v-dialog':dialog,
-    'v-alert':alert
+    'v-alert':alert,
+    'slotChild':slotChild
   },
   mounted(){
    this.routerQuery = JSON.stringify(this.$route.query);
    console.log(this.$route.query);
   },
   methods:{
-    change(e){
+    menuShow(index){
       var that = this;
-      var thisClass = e.currentTarget.className;
-      var thisDom = e.currentTarget;
-      that.thisList = that[thisClass];
-      var btnMusic = document.querySelector("#myEmbed");
-      btnMusic.play();
+      that.menuIndex  = index;
+      console.log(index);
+      var btnMusic = document.querySelector("#myEmbed")
+      btnMusic.play()
     },
     dialog(){
       var that = this;
       that.dialogs = true;
+    },
+    slotClick(){
+      var that = this;
+      that.slotShow = true;
+    },
+    closeSlot(){
+      var that = this;
+      that.slotShow = false;
     },
     cancal(){
       var that = this;
@@ -118,9 +133,13 @@ export default {
       var that = this;
       this.orAlert = true;
       that.alertMsg = "调用toast提示";
-      setTimeout(function(){
+      that.disabled = true;
+      clearTimeout(timer);
+      let timer = setTimeout(function(){
         that.orAlert = false;
-      },2000)
+        that.disabled = false;
+        
+      },3000)
     },
     rate(e){
       var vue = this;
@@ -147,6 +166,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+a{
+  text-decoration: none;
+  color: #000000;
+}
 .rate{
   display: inline-block;
 }
@@ -163,9 +186,11 @@ export default {
   line-height: 40px;
   border: 1px solid #cccccc;
   box-sizing: border-box;
-  cursor: pointer;
+  cursor: url('/static/img/hand.cur'),auto;
 }
-.tabConent{
-  
+.active{
+    color: #fff;
+    background-color: #409EFF;
+    border-color: #409EFF;
 }
 </style>

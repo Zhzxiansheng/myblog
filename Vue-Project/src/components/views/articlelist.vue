@@ -58,7 +58,7 @@ export default {
   },
   methods:{
     goDetail(id){
-      this.$router.push("/articledetail?id="+id);
+      this.$router.push("/articledetail/"+id);
     }
   }
 }

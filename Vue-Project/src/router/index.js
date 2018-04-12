@@ -12,6 +12,8 @@ import articledetail from '@/components/views/articledetail'
 import aboutme from '@/components/views/aboutme'
 import canvasLight from '@/components/views/canvasLight'
 import morebtn from '@/components/views/morebtn'
+import btnStatus from '@/components/views/btnStatus'
+
 
 
 Vue.use(Router)
@@ -34,7 +36,12 @@ export default new Router({
       component: morebtn
     },
     {
-      path: '/articledetail',
+      path: '/btnStatus',
+      name: '不同状态显示不同按钮情况',
+      component: btnStatus
+    },
+    {
+      path: '/articledetail/:id',
       name: '文章详情',
       component: articledetail
     },
