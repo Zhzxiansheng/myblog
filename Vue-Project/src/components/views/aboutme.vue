@@ -9,15 +9,24 @@
 
      <p>点击tab切换，并调起点击音乐</p>
      <ul class="tab">
-        <li class="interpreList" @click="change($event)">TAB1</li>
-        <li class="chinapreList" @click="change($event)">TAB2</li>
+        <!-- <li id="interpreList" @click="change($event)">TAB1</li>
+        <li id="chinapreList" @click="change($event)">TAB2</li> -->
+        <li v-for="(item,index) in navlist" :class="{active:!(index-menuIndex)}"  @click='menuShow(index)'  v-text="item" >{{item}}</li>
       </ul>
       
     <audio src="/static/btn.mp3" controls="controls" id="myEmbed" hidden>
       Your browser does not support the audio element.
       </audio>
     <div class="tabConent">
-      <p v-for="list in thisList">{{list.name}}</p>
+      <div v-show='menuIndex=0'>
+          <p>第一内容</p>
+        </div>
+        <div v-show='menuIndex=1'>
+          <p>第二内容</p>
+        </div>
+        <div v-show='menuIndex=2'>
+         <p>第三内容</p>
+        </div>
     </div>
 
 
@@ -27,7 +36,7 @@
     <v-dialog :dialog-msg="dialogMsg" v-show="dialogs"  @cancel="cancal" @confirm="confirm"></v-dialog>
 
   <div class="alertContsainer ">
-    <p> <button @click="getAlert()">调用弹窗</button> </p>
+    <p> <button @click="getAlert()" :disabled="disabled">调用弹窗</button> </p>
     <v-alert v-show="orAlert" :alertMsg="alertMsg"></v-alert>
   </div>
   <el-button type="primary" plain> <router-link to="/btnStatus">不同状态展示不同按钮</router-link> </el-button>
@@ -48,6 +57,8 @@
 import dialog from '../common/dialog'
 import alert from '../common/alert'
 import slotChild from '../common/slot'
+var json1 = [{"name":"zzz"},{"name":"sss"}];
+var json2 = [{"name":"aaa"},{"name":"ddd"}];
 export default {
   data(){
     return{
@@ -58,9 +69,9 @@ export default {
        value1: null,
        slotShow:false,
        msg:"",
-       interpreList:[{"name":"zzz"},{"name":"sss"}],
-       chinapreList:[{"name":"aaa"},{"name":"ddd"}],
-       thisList:[{"name":"zzz"},{"name":"sss"}]
+       menuIndex: 0,
+       navlist: ['手机点餐', '手机外卖', '网络预订'],
+       disabled:false
     }
   },
   created(){
@@ -68,16 +79,19 @@ export default {
     this.value1 = parseInt(storage);
     // localStorage.clear();
   },
+  mounted(){
+  
+  },
   components:{
     'v-dialog':dialog,
     'v-alert':alert,
     'slotChild':slotChild
   },
   methods:{
-    change(e){
+    menuShow(index){
       var that = this;
-      var thisDom = e.currentTarget.className;
-      that.thisList = that[thisDom]
+      that.menuIndex  = index;
+      console.log(index);
       var btnMusic = document.querySelector("#myEmbed")
       btnMusic.play()
     },
@@ -115,9 +129,13 @@ export default {
       var that = this;
       this.orAlert = true;
       that.alertMsg = "调用toast提示";
-      setTimeout(function(){
+      that.disabled = true;
+      clearTimeout(timer);
+      let timer = setTimeout(function(){
         that.orAlert = false;
-      },2000)
+        that.disabled = false;
+        
+      },3000)
     },
     rate(e){
       var vue = this;
@@ -164,9 +182,11 @@ a{
   line-height: 40px;
   border: 1px solid #cccccc;
   box-sizing: border-box;
-  cursor: pointer;
+  cursor: url('/static/img/hand.cur'),auto;
 }
-.tabConent{
-  
+.active{
+    color: #fff;
+    background-color: #409EFF;
+    border-color: #409EFF;
 }
 </style>

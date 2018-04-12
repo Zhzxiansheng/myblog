@@ -20,11 +20,21 @@ Vue.use(Vuex)
 Vue.config.productionTip = false
 
 // 定义vuex 的 store 对象
-var store = new Vuex.Store({//store对象
+const store = new Vuex.Store({
   state: {
-    show: false
+    count: 0
+  },
+  mutations: {
+    increment(state) {
+      state.count++
+    }
   }
 })
+
+store.commit('increment'); // 调用上面的 mutations 中的 increment 
+
+console.log(store.state.count) // -> 1
+// store.state 获取状态对象  store.commit 方法触发状态变更
 
 /* eslint-disable no-new */
 new Vue({
