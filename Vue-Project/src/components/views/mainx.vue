@@ -54,6 +54,12 @@
                  <span slot="title">关于我的</span>
                </el-menu-item>
               </router-link>
+             <router-link to="/mainx/myArticle">
+              <el-menu-item index="5">
+                 <i class="el-icon-star-on"></i>
+                 <span slot="title">文章笔记</span>
+               </el-menu-item>
+              </router-link>
             </el-menu>
 
           </el-aside>
@@ -136,7 +142,6 @@ export default {
   line-height: 100px;
 }
 .timecon{
-  display: inline-block;
   width: 200px;
   height: 100px;
   float: right;

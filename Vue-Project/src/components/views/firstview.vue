@@ -37,7 +37,23 @@
 
 <script>
  import toast from '../toast';        //引入toast函数  
-
+// ajax函数将返回Promise对象:
+function ajax(method, url, data) {
+    var request = new XMLHttpRequest();
+    return new Promise(function (resolve, reject) {
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                if (request.status === 200) {
+                    resolve(request.responseText);
+                } else {
+                    reject(request.status);
+                }
+            }
+        };
+        request.open(method, url);
+        request.send(data);
+    });
+};
 export default {
   data () {
     return {
@@ -69,6 +85,15 @@ export default {
     var a2 = [4,5,6];
     // 想要在前的放在 concat 前面
     this.arr = a1.concat(a2);
+    var p = ajax('GET', '/static/json.json');
+    p.then(function (text) { // 如果AJAX成功，获得响应内容
+        if(typeof text == 'string'){
+          text = JSON.parse(text);
+        }
+        console.log(text)
+    }).catch(function (status) { // 如果AJAX失败，获得响应代码
+        console.log(status);
+    });
   },
   mounted(){
     var _this = this;
@@ -105,14 +130,12 @@ export default {
               img.onload = onloaded;
             }
             else {
-              console.log("图片加载完了");
               convertCanvasToImage(canvas)
             }
           }
 
           function convertCanvasToImage(canvas) {
             var image = new Image();
-            console.log(canvas.toDataURL());
              _this.imgUrl = canvas.toDataURL();
             image.setAttribute("crossOrigin", 'anonymous')
             image.src = canvas.toDataURL("image/png");
@@ -125,10 +148,8 @@ export default {
           function onloaded(e) {
             x = x + 100;
             // y = y+100;
-            console.log(x, y);
             // 这里的 xy  是下面的图的排列
             var img = e.target;
-            console.log(e, img);
             ctx.drawImage(img, 0, y);
             y = y + 20;
             n++;
@@ -151,7 +172,6 @@ export default {
     },
     quickSort(arr){
       var _this = this;
-      // console.log(arr);
   　　if (arr.length <= 1) { return arr; }
   　　var pivotIndex = Math.floor(arr.length / 2);
       // console.log('pivotIndex : '+pivotIndex);
@@ -166,8 +186,6 @@ export default {
   　　　　　　right.push(arr[i]);
   　　　　}
   　　}
-      console.log("left : "+　left);
-      console.log("right : "+right);
       // console.log(_this.quickSort(left).concat([pivot],_this. quickSort(right)));
   　　return _this.quickSort(left).concat([pivot], _this.quickSort(right));
    },

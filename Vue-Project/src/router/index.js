@@ -8,7 +8,9 @@ import zhihu from '@/components/views/zhihu'
 import zhihuResource from '@/components/views/zhihu-resource'
 import notes from '@/components/views/notes'
 import articlelist from '@/components/views/articlelist'
+import articlelist2 from '@/components/views/articlelist2'
 import articledetail from '@/components/views/articledetail'
+import myArticle from '@/components/views/myArticle'  //文章笔记点进去的详情页
 import aboutme from '@/components/views/aboutme'
 import canvasLight from '@/components/views/canvasLight'
 import morebtn from '@/components/views/morebtn'
@@ -46,6 +48,12 @@ export default new Router({
       component: articledetail
     },
     {
+      path: '/myArticle/:type',
+      name: '我的文章详情',
+      component: myArticle
+    },
+    
+    {
       path: '/mainx',
       name: 'mainx',
       component: mainx,
@@ -64,6 +72,11 @@ export default new Router({
           path: '/mainx/article',
           name: '文章列表',
           component: articlelist
+        },
+        {
+          path: '/mainx/myArticle',
+          name: '我的笔记',
+          component: articlelist2
         },
         {
           path: '/mainx/douban',

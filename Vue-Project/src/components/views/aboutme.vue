@@ -18,13 +18,13 @@
       Your browser does not support the audio element.
       </audio>
     <div class="tabConent">
-      <div v-show='menuIndex=0'>
+      <div v-show='menuIndex==0'>
           <p>第一内容</p>
         </div>
-        <div v-show='menuIndex=1'>
+        <div v-show='menuIndex==1'>
           <p>第二内容</p>
         </div>
-        <div v-show='menuIndex=2'>
+        <div v-show='menuIndex==2'>
          <p>第三内容</p>
         </div>
     </div>
@@ -95,7 +95,6 @@ export default {
     menuShow(index){
       var that = this;
       that.menuIndex  = index;
-      console.log(index);
       var btnMusic = document.querySelector("#myEmbed")
       btnMusic.play()
     },
@@ -111,19 +110,19 @@ export default {
       var that = this;
       that.slotShow = false;
     },
-    cancal(){
+    cancal(msg){
       var that = this;
       that.dialogs = false;
-      that.alertMsg = "你点击了关闭询问框";
+      that.alertMsg = "msg";
       this.orAlert = true;
       setTimeout(function(){
         that.orAlert = false;
       },2000)
     },
-    confirm(){
+    confirm(msg){
       var that = this;
       that.dialogs = false;
-      that.alertMsg = "你点击了确定按钮";
+      that.alertMsg = "msg";
       this.orAlert = true;
       setTimeout(function(){
         that.orAlert = false;
@@ -133,14 +132,13 @@ export default {
       var that = this;
       that.alertMsg = "调用toast提示";
       this.orAlert = true;
-      
-      // that.disabled = true;
-      // clearTimeout(timer);
-      // let timer = setTimeout(function(){
-      //   that.orAlert = false;
-      //   that.disabled = false;
+      that.disabled = true;
+      clearTimeout(timer);
+      let timer = setTimeout(function(){
+        that.orAlert = false;
+        that.disabled = false;
         
-      // },3000)
+      },3000)
     },
     rate(e){
       var vue = this;
