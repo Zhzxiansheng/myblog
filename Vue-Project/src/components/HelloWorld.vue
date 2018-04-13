@@ -55,6 +55,7 @@ export default {
   methods:{
     login(data){
       window.system.user = data.form.name;
+      window.localStorage.setItem("userName",data.form.name);
       if(data.form.name == ""){
         const h = this.$createElement;
         this.$notify({
