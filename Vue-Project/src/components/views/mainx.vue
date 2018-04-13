@@ -1,54 +1,123 @@
 <template>
-  <div class="">
+  <div class="mainx">
     <el-container>
-        <el-header class="header">
-          <span class="logo">
-            Z
-          </span>
-      </el-header>
+      <el-header class="header">
+      <router-link to="/">
+        <span class="logo">
+          Z
+        </span>
+        <span>用户：{{user}}</span>
+      </router-link>
+      <span class="timecon">
+        <canvas id="canvas" height="100" style="width:100%"></canvas>
+      </span>
+    </el-header>
         <el-container class="container">
-          <el-aside width="200px" class="aside">Aside</el-aside>
+          <el-aside width="260px" class="aside" >
+            <!-- 左侧导航栏 -->
+            <el-menu :default-openeds="['1','2']">
+              <el-submenu index="1">
+                <template slot="title"><i class="el-icon-menu"></i>第一界面</template>
+                <el-menu-item-group>
+                  <router-link to="/mainx/firstview">
+                    <el-menu-item index="1-1" @click="chuanzhi($event)">1.1界面</el-menu-item>
+                  </router-link>
+                </el-menu-item-group>
+                <router-link to="/mainx/notes">
+                  <el-menu-item index="1-2">笔记</el-menu-item>
+                </router-link>
+                <router-link to="/mainx/article">
+                  <el-menu-item index="1-3">文章</el-menu-item>
+                </router-link>
+              </el-submenu>
+              <el-submenu index="2">
+                  <template slot="title"><i class="el-icon-star-off"></i>知乎</template>
+                <el-menu-item-group>
+                  <router-link to="/mainx/douban">
+                    <el-menu-item index="2-1">知乎axios</el-menu-item>
+                  </router-link>
+                 <router-link to="/mainx/zhihu">
+                  <el-menu-item index="2-2">知乎vue-resource</el-menu-item>
+                </router-link>
+                </el-menu-item-group>
+
+              </el-submenu>
+              <router-link to="/mainx/canvasLight">
+                <el-menu-item index="3">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">灯光聚焦</span>
+                  </el-menu-item>
+              </router-link>
+             <router-link to="/mainx/aboutme">
+              <el-menu-item index="4">
+                 <i class="el-icon-setting"></i>
+                 <span slot="title">关于我的</span>
+               </el-menu-item>
+              </router-link>
+             <router-link to="/mainx/myArticle">
+              <el-menu-item index="5">
+                 <i class="el-icon-star-on"></i>
+                 <span slot="title">文章笔记</span>
+               </el-menu-item>
+              </router-link>
+            </el-menu>
+
+          </el-aside>
           <el-main>
-            <el-input v-model="form.name" v-show="1" data-num="1"></el-input>
-            <el-input v-model="form.name" v-show="2" data-num="2"></el-input>
-            <el-input v-model="form.name" v-show="3" data-num="3"></el-input>
-            <el-input v-model="form.name" v-show="show_4"></el-input>
+
+              <router-view v-bind:message="message2"/>
           </el-main>
-          <button type="button" name="button" @click="xuan()">隐藏123</button>
+
         </el-container>
     </el-container>
+
   </div>
 </template>
 
 
 
 <script>
+import { time } from '../../../static/js/canvasTime.js'
 export default {
   name:"mainx",
   data(){
     return{
+      message2:"父组件传下来的值",
+      user:"",
       form:{
         name:"1"
       },
-      1:true,
-      2:true,
-      3:true,
+      me:{
+        name:"张浩壮",
+        age:"88",
+        sex:"man"
+      },
       show_4:true
     }
   },
-  create(){
 
-  },
-  mountend(){
-
-  },
-  methods:{
-    xuan(){
-      var arr = [1,2,3];
-      for(var i =0;i<arr.length;i++){
-        console.log(arr[i]);
-      }
+  created(){
+    if(system.user == ""){
+      system.user = "访客"
     }
+    system.path=location.hash;
+  },
+  mounted (){
+    this.user = system.user;
+    time();
+    // console.log(this.prerson);
+    this.$message({
+          message: '欢迎你，'+system.user,
+          type: 'success'
+        });
+  },
+
+  methods:{
+    chuanzhi(e){
+      console.log($);
+      console.log($(e.$el).html());
+    }
+
   }
 }
 </script>
@@ -72,11 +141,21 @@ export default {
   text-align: center;
   line-height: 100px;
 }
+.timecon{
+  width: 200px;
+  height: 100px;
+  float: right;
+  line-height: 117px;
+}
 .container{
   padding-top: 20px;
 }
 .aside{
   border-right: 1px solid #D8DCE5;
+}
+a{
+  text-decoration: none;
+  color: #2d2f33;
 }
 
 </style>
