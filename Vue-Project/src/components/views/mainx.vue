@@ -97,9 +97,7 @@ export default {
   },
 
   created(){
-    if(system.user == ""){
-      system.user = "访客"
-    }
+    this.user = window.localStorage.getItem("userName");
     system.path=location.hash;
   },
   mounted (){
