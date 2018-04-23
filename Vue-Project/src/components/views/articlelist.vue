@@ -5,7 +5,7 @@
         <h3>{{item.title}}</h3>
         <!-- <p v-html="item.content"></p> -->
         <listC :content="item.content" v-on:add></listC>
-        <span @click="goDetail(item.id)" class="gotodetail"></span>
+        <span @click="goDetail(item.id)" class="gotodetail" v-show="item.orlink"></span>
       </section>
   </div>
   </div>
@@ -20,28 +20,39 @@ export default {
       json:[
         {
           "id":1,
+          "orlink":true,
           "title":"vue常用的插件",
           "content":"移动端：1.UI组件Mint UI; <a>http://mint-ui.github.io/#!/zh-cn</a> <br /> github：https://github.com/ElemeFE/mint-ui <br/> 2.幻灯片组件 <b>vue-swiper</b> gitlab:https://github.com/ElemeFE/vue-swipe <br />"
         },
         {
           "id":2,
+          "orlink":true,
           "title":"vue常用的一些小技巧",
           "content":"1.v-if: <br/> 2.v-show: <br/> 3.过滤器 4. 根据不同的状态展示不同的样式v-bind:class"
         },
         {
           "id":3,
+          "orlink":true,
           "title":"vuex 的理解与应用",
           "content":"<p>什么是vuex?</p> "
         },
         {
           "id":4,
+          "orlink":true,
           "title":"vuejs实现数据双向绑定的原理",
           "content":"<p>实现原理object.defineProperty()</p> "
         },
         {
           "id":5,
+          "orlink":true,
           "title":"数组快排的实现",
           "content":"将数组切割成两个数组，对这两个数组"
+        },
+        {
+          "id":6,
+          "orlink":false,
+          "title":"输入框的enter事件",
+          "content":"@keyup.native.enter=functionName"
         }
         
       ]
