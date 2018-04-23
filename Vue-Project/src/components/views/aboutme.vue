@@ -18,13 +18,13 @@
       Your browser does not support the audio element.
       </audio>
     <div class="tabConent">
-      <div v-show='menuIndex=0'>
+      <div v-show='menuIndex==0'>
           <p>第一内容</p>
         </div>
-        <div v-show='menuIndex=1'>
+        <div v-show='menuIndex==1'>
           <p>第二内容</p>
         </div>
-        <div v-show='menuIndex=2'>
+        <div v-show='menuIndex==2'>
          <p>第三内容</p>
         </div>
     </div>
@@ -69,7 +69,7 @@ export default {
        value1: null,
        slotShow:false,
        msg:"",
-       menuIndex: 0,
+       menuIndex:0,
        navlist: ['手机点餐', '手机外卖', '网络预订'],
        disabled:false
     }
@@ -87,11 +87,14 @@ export default {
     'v-alert':alert,
     'slotChild':slotChild
   },
+  mounted(){
+   this.routerQuery = JSON.stringify(this.$route.query);
+   console.log(this.$route.query);
+  },
   methods:{
     menuShow(index){
       var that = this;
       that.menuIndex  = index;
-      console.log(index);
       var btnMusic = document.querySelector("#myEmbed")
       btnMusic.play()
     },
@@ -107,19 +110,19 @@ export default {
       var that = this;
       that.slotShow = false;
     },
-    cancal(){
+    cancal(msg){
       var that = this;
       that.dialogs = false;
-      that.alertMsg = "你点击了关闭询问框";
+      that.alertMsg = "msg";
       this.orAlert = true;
       setTimeout(function(){
         that.orAlert = false;
       },2000)
     },
-    confirm(){
+    confirm(msg){
       var that = this;
       that.dialogs = false;
-      that.alertMsg = "你点击了确定按钮";
+      that.alertMsg = "msg";
       this.orAlert = true;
       setTimeout(function(){
         that.orAlert = false;
@@ -127,8 +130,8 @@ export default {
     },
     getAlert(){
       var that = this;
-      this.orAlert = true;
       that.alertMsg = "调用toast提示";
+      this.orAlert = true;
       that.disabled = true;
       clearTimeout(timer);
       let timer = setTimeout(function(){

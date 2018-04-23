@@ -5,7 +5,6 @@
             <div class="closebtn" @click="cancal">×</div>
             <div class="text">
                 {{dialogMsg}}
-                <!--确定报名？-->
              </div>
             <div class="btn-wrap">
                 <div class="btn" @click="cancal">取消</div>
@@ -29,10 +28,10 @@ export default {
     },
     methods: {
         confirm () {
-            this.$emit('confirm')
+            this.$emit('confirm','点击了确定按钮传送的信息')
         },
         cancal () {
-            this.$emit('cancel')
+            this.$emit('cancel','点击了取消按钮 传送的信息')
         }
     }
     

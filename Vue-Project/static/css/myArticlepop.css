@@ -1,0 +1,39 @@
+.arTitle{
+    text-align: center;
+}
+.col{
+    height: 35px;
+    padding-left: 8px;
+    border-left: 5px solid 	#E5E5E5;
+    line-height: 35px;
+}
+.col1{
+    min-height: 35px;
+    padding-left: 8px;
+    border-left: 5px solid 	#E5E5E5;
+}
+ul{
+    list-style: none;
+}
+img{
+    max-width: 100%;
+}
+.tip{
+    font-size: 12px; 
+    color: #FF7256;
+}
+.postMsg{
+   font-size: 15px;  
+   color: #4169E1;
+}
+.code{
+    background: rgba(0, 0, 0,0.8);
+    color: #fff;
+    padding:15px 0 15px 20px;
+}
+
+.bold{
+    font-size: 17px;
+    color: black;
+    font-weight: bold;
+}

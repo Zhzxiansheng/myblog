@@ -27,7 +27,7 @@ export default {
   },
   mounted (){
     time();
-    this.user = system.user;
+    this.user = window.localStorage.getItem("userName");
   }
 }
 </script>

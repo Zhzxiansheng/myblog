@@ -54,6 +54,12 @@
                  <span slot="title">关于我的</span>
                </el-menu-item>
               </router-link>
+             <router-link to="/mainx/myArticle">
+              <el-menu-item index="5">
+                 <i class="el-icon-star-on"></i>
+                 <span slot="title">文章笔记</span>
+               </el-menu-item>
+              </router-link>
             </el-menu>
 
           </el-aside>
@@ -91,9 +97,7 @@ export default {
   },
 
   created(){
-    if(system.user == ""){
-      system.user = "访客"
-    }
+    this.user = window.localStorage.getItem("userName");
     system.path=location.hash;
   },
   mounted (){
