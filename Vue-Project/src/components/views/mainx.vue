@@ -136,7 +136,6 @@ export default {
   line-height: 100px;
 }
 .timecon{
-  display: inline-block;
   width: 200px;
   height: 100px;
   float: right;
