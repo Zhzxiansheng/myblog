@@ -36,10 +36,11 @@
      
      Filter Key<input type="text" v-model="key">   
       <ul>
-       <li v-for="item in filterShoppingList">
+       <li v-for="item in filterShoppingList" :key="item">
            {{ item }}
        </li>
     </ul>  
+    <p style="color:#FF6347">过滤器return出来的值：：： {{num | numFilter}}</p>
   </div>
 </template>
 
@@ -63,9 +64,7 @@ function ajax(method, url, data) {
     });
 };
 export default {
-  filters:{
-    
-  },
+ 
   data () {
     return {
       msg: '',
@@ -75,6 +74,7 @@ export default {
       key: "",
       arr:[],
       sortArr:[10,58,40,88,69,99],
+      num:6,
       getSrotArr:"",
       imgUrl:"",
       loading:false,
@@ -187,6 +187,15 @@ export default {
       bindButtonEvent(saveButton, "click", saveImageInfo);
     }
 
+  },
+   filters:{
+    numFilter: function(value){
+      if (typeof value == "number"){
+          value = value.toString();
+      }
+      return value;
+      
+    }
   },
   methods:{
     loadVue(){
