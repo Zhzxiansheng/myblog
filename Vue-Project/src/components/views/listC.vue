@@ -7,7 +7,7 @@
         <div v-html="content">
              <p >{{content}}</p> 
         </div>
-        <button @click="add">{{ count }}</button>
+        <!-- <button @click="add">{{ count }}</button> -->
         <!-- <span @click="goDetail(item.id)" class="gotodetail"></span> -->
       </section>
   </div>

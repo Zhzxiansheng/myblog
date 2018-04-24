@@ -15,12 +15,31 @@
         <el-container class="container">
           <el-aside width="260px" class="aside" >
             <!-- 左侧导航栏 -->
-            <el-menu :default-openeds="['1','2']">
-              <el-submenu index="1">
+            <el-menu :default-openeds="['1','4']">
+              <router-link to="/mainx/myArticle">
+              <el-menu-item index="1">
+                 <i class="el-icon-star-on"></i>
+                 <span slot="title">文章笔记</span>
+               </el-menu-item>
+              </router-link>
+              <router-link to="/mainx/canvasLight">
+                <el-menu-item index="2">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">灯光聚焦</span>
+                  </el-menu-item>
+              </router-link>
+             <router-link to="/mainx/aboutme">
+              <el-menu-item index="3">
+                 <i class="el-icon-setting"></i>
+                 <span slot="title">关于我的</span>
+               </el-menu-item>
+              </router-link>
+             
+              <el-submenu index="4">
                 <template slot="title"><i class="el-icon-menu"></i>第一界面</template>
                 <el-menu-item-group>
                   <router-link to="/mainx/firstview">
-                    <el-menu-item index="1-1" @click="chuanzhi($event)">1.1界面</el-menu-item>
+                    <el-menu-item index="1-1" @click="chuanzhi($event)">随笔知识点</el-menu-item>
                   </router-link>
                 </el-menu-item-group>
                 <router-link to="/mainx/notes">
@@ -30,7 +49,7 @@
                   <el-menu-item index="1-3">文章</el-menu-item>
                 </router-link>
               </el-submenu>
-              <el-submenu index="2">
+              <el-submenu index="5">
                   <template slot="title"><i class="el-icon-star-off"></i>知乎</template>
                 <el-menu-item-group>
                   <router-link to="/mainx/douban">
@@ -42,24 +61,7 @@
                 </el-menu-item-group>
 
               </el-submenu>
-              <router-link to="/mainx/canvasLight">
-                <el-menu-item index="3">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">灯光聚焦</span>
-                  </el-menu-item>
-              </router-link>
-             <router-link to="/mainx/aboutme">
-              <el-menu-item index="4">
-                 <i class="el-icon-setting"></i>
-                 <span slot="title">关于我的</span>
-               </el-menu-item>
-              </router-link>
-             <router-link to="/mainx/myArticle">
-              <el-menu-item index="5">
-                 <i class="el-icon-star-on"></i>
-                 <span slot="title">文章笔记</span>
-               </el-menu-item>
-              </router-link>
+              
             </el-menu>
 
           </el-aside>
@@ -101,11 +103,11 @@ export default {
     system.path=location.hash;
   },
   mounted (){
-    this.user = system.user;
+    self = this;
     time();
     // console.log(this.prerson);
     this.$message({
-          message: '欢迎你，'+system.user,
+          message: '欢迎你，'+self.user,
           type: 'success'
         });
   },

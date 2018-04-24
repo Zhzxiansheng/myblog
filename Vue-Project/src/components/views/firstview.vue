@@ -32,6 +32,15 @@
      <span>去"关于我的"查看,会发现在网址上有?plan=private字段，能够通过this.$route.query.plan获取</span>
     </p>
      
+     <h3>过滤器 filter 的使用：</h3>
+     
+     Filter Key<input type="text" v-model="key">   
+      <ul>
+       <li v-for="item in filterShoppingList" :key="item">
+           {{ item }}
+       </li>
+    </ul>  
+    <p style="color:#FF6347">过滤器return出来的值：：： {{num | numFilter}}</p>
   </div>
 </template>
 
@@ -55,11 +64,17 @@ function ajax(method, url, data) {
     });
 };
 export default {
+ 
   data () {
     return {
       msg: '',
+      shoppingList: [
+            "Milk", "Donuts", "Cookies", "Chocolate", "Peanut Butter", "Pepto Bismol", "Pepto Bismol (Chocolate flavor)", "Pepto Bismol (Cookie flavor)"
+        ],
+      key: "",
       arr:[],
       sortArr:[10,58,40,88,69,99],
+      num:6,
       getSrotArr:"",
       imgUrl:"",
       loading:false,
@@ -80,6 +95,17 @@ export default {
     }
   },
   props:["message"],
+  computed: {
+        filterShoppingList: function () {
+            // `this` points to the vm instance
+            var key = this.key;
+            var shoppingList = this.shoppingList;
+            //在使用filter时需要注意的是，前面调用的是需要使用filter的数组，而给filter函数传入的是数组中的每个item，也就是说filter里面的函数，是每个item要去做的，并将每个结果返回。
+            return shoppingList.filter(function (item) {
+                return item.toLowerCase().indexOf(key.toLowerCase()) != -1
+            });;
+        }
+    },
   created :function(){
     var a1 = [1,2,3];
     var a2 = [4,5,6];
@@ -161,6 +187,15 @@ export default {
       bindButtonEvent(saveButton, "click", saveImageInfo);
     }
 
+  },
+   filters:{
+    numFilter: function(value){
+      if (typeof value == "number"){
+          value = value.toString();
+      }
+      return value;
+      
+    }
   },
   methods:{
     loadVue(){
