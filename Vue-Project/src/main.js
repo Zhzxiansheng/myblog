@@ -8,6 +8,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Vuex from 'vuex'
 
+// swipe组件
+import { Swipe, SwipeItem } from 'mint-ui';
+import 'mint-ui/lib/style.css'
+
 // loading通用组件
 import Loading from './components/loading'
 Vue.use(Loading)
@@ -16,9 +20,10 @@ Vue.use(Loading)
 Vue.use(ElementUI)
 Vue.use(VueResource)
 Vue.use(Vuex)
-
+// Vue.use(MintUI)
 Vue.config.productionTip = false
-
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 // 定义vuex 的 store 对象
 const store = new Vuex.Store({
   state: {
