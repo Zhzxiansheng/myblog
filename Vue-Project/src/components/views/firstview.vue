@@ -41,7 +41,10 @@
        </li>
     </ul>  
     <p style="color:#FF6347">过滤器return出来的值：：： {{num | numFilter}}</p>
+    <el-button type="primary" @click="watchInfo()">watch监听info变化</el-button> 
+    <p>{{info}}</p>
   </div>
+  
 </template>
 
 <script>
@@ -68,6 +71,7 @@ export default {
   data () {
     return {
       msg: '',
+      info:0,
       shoppingList: [
             "Milk", "Donuts", "Cookies", "Chocolate", "Peanut Butter", "Pepto Bismol", "Pepto Bismol (Chocolate flavor)", "Pepto Bismol (Cookie flavor)"
         ],
@@ -106,6 +110,12 @@ export default {
             });;
         }
     },
+  watch:{
+    'info'(value,old){
+      // 这里的参数值位置不能改变，第二个参数代表原始值
+      console.log('old: '+old + " value: "+value)
+    }
+  },
   created :function(){
     var a1 = [1,2,3];
     var a2 = [4,5,6];
@@ -198,6 +208,10 @@ export default {
     }
   },
   methods:{
+    watchInfo(){
+      this.info++;
+      this.info++;
+    },
     loadVue(){
      var _this = this;
      this.loading = true;
