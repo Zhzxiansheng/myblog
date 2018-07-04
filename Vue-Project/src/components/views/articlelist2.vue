@@ -4,7 +4,7 @@
       <section class="section" v-for="item in json" :key="item.type" :id="item.type">
         <h3>{{item.title}}</h3>
         <p v-html="item.content"></p>
-        <span @click="goDetail(item.type)" class="gotodetail"></span>
+        <span @click="goDetail(item.type)" class="gotodetail" v-show="item.orlink"></span>
       </section>
   </div>
   </div>
@@ -20,12 +20,14 @@ export default {
         {
           "type":"domToImage",
           "title":"dom-to-image",
-          "content":"作用：将html转换成图片"
+          "content":"作用：将html转换成图片",
+          "orlink":true
         },
         {
             "type":"props",
             "title":"父子组件之间通信",
-            "content":"父组件传值子组件：props <br/> 子组件传父组件 $emit('name')"
+            "content":"父组件传值子组件：props <br/> 子组件传父组件 $emit('name')",
+            "orlink":true
         },
         
       ]
