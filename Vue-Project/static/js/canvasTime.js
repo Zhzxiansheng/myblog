@@ -1,6 +1,4 @@
 export function time (){
-
-
      var digit=
       [
           [

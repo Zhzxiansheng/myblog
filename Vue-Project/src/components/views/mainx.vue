@@ -109,7 +109,7 @@ export default {
   },
   mounted (){
     // self = this;
-    // time();
+    time();
     // // console.log(this.prerson);
     // this.$message({
     //       message: '欢迎你，'+self.user,
