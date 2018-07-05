@@ -26,7 +26,7 @@
     </el-form-item>
     <el-button type="primary" @click="login($data)">进入主站</el-button> <router-link to="/view">Go to introduce</router-link>
   </el-form>
-  <input type="text" class="input">
+  <!-- <input type="text" class="input"> -->
   </div>
 </template>
 
@@ -85,6 +85,9 @@ export default {
   width: 50%;
   margin: 200px auto;
   text-align: center;
+  .input{
+    border: 1px solid red;
+  }
 }
 
 h1, h2 {
