@@ -16,6 +16,9 @@ import canvasLight from '@/components/views/canvasLight'
 import morebtn from '@/components/views/morebtn'
 import btnStatus from '@/components/views/btnStatus'
 
+// swiper组件
+import swipe from '@/components/views/swipe'
+
 
 
 Vue.use(Router)
@@ -97,6 +100,11 @@ export default new Router({
           path: "/mainx/aboutme",
           name:"aboutme",
           component: aboutme,
+        },
+        {
+          path: '/mainx/swipe',
+          name: 'swipe',
+          component: swipe
         }
       ]
     }
