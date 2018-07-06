@@ -48,6 +48,15 @@
         <p slot="one">修改one内容</p>
     </slotChild>
     </div>
+
+    <div class="swiper" @mousedown="down" @mouseup="up" @mousemove="move">
+      <img src="../../../static/img/swiper.jpg"  @click="getImg" />
+    </div>
+    <div class="imgContainer" v-show="imgShow">
+      <div class="img-conent" @click="imgHide">
+        <img :src="indexImg" />
+      </div>
+    </div>
   </div>
   
 
@@ -71,7 +80,11 @@ export default {
        msg:"",
        menuIndex:0,
        navlist: ['手机点餐', '手机外卖', '网络预订'],
-       disabled:false
+       disabled:false,
+       clientX:0,
+       clientXNext:0,
+       indexImg:"",
+       imgShow:false
     }
   },
   created(){
@@ -92,6 +105,32 @@ export default {
    console.log(this.$route.query);
   },
   methods:{
+    move(event){
+      // console.log(event);
+    },
+    imgHide(){
+      if(this.imgShow){
+        this.imgShow =!this.imgShow;
+      }
+    },
+    getImg(event){
+      console.log(event.target.currentSrc);
+      this.imgShow = true;
+      this.indexImg = event.target.currentSrc;
+    },
+    // 鼠标按下事件
+    down(event){
+      console.log("当前鼠标X 轴位置："+ event.clientX);
+      this.clientX = event.clientX;
+
+    },
+    // 鼠标抬起
+    up(event){
+      console.log("当前鼠标X 轴位置："+ event.clientX);
+      var D_value = event.clientX - this.clientX; // 两次事件移动的差值
+      // console.log(D_value);
+    },
+
     menuShow(index){
       var that = this;
       that.menuIndex  = index;
@@ -165,6 +204,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.swiper{
+  width: 500px;
+  height: 400px;
+  background: yellowgreen;
+}
 a{
   text-decoration: none;
   color: #000000;
@@ -191,5 +235,25 @@ a{
     color: #fff;
     background-color: #409EFF;
     border-color: #409EFF;
+}
+.imgContainer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .8);
+  z-index: 2;
+}
+.img-conent{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  z-index: 5;
+}
+ img{
+  width: 100%;
 }
 </style>
