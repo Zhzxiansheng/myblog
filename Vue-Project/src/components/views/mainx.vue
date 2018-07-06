@@ -34,12 +34,12 @@
                  <span slot="title">关于我的</span>
                </el-menu-item>
               </router-link>
-             <router-link to="/mainx/swipe">
+             <!-- <router-link to="/mainx/swipe">
               <el-menu-item index="13">
                  <i class="el-icon-setting"></i>
                  <span slot="title">swiper组件</span>
                </el-menu-item>
-              </router-link>
+              </router-link> -->
               <el-submenu index="4">
                 <template slot="title"><i class="el-icon-menu"></i>第一界面</template>
                 <el-menu-item-group>
