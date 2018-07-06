@@ -45,8 +45,12 @@
     <div class="slot">
       <slotChild v-show="slotShow" @closeSlot="closeSlot">
         <h3 slot="title">slot的使用</h3> 
-        <p slot="one">修改one内容</p>
+        <p slot="one">修改one内容(修改了slot组件的默认值)</p>
     </slotChild>
+
+    <v-slot>
+      <h3>slot 是插槽，可以插入标签，这里就是引用了slot_2里面抛出来的slot插槽</h3>
+    </v-slot>
     </div>
 
     <div class="swiper" @mousedown="down" @mouseup="up" @mousemove="move">
@@ -66,6 +70,7 @@
 import dialog from '../common/dialog'
 import alert from '../common/alert'
 import slotChild from '../common/slot'
+import slotItem from '../common/slot_2'
 var json1 = [{"name":"zzz"},{"name":"sss"}];
 var json2 = [{"name":"aaa"},{"name":"ddd"}];
 export default {
@@ -98,7 +103,8 @@ export default {
   components:{
     'v-dialog':dialog,
     'v-alert':alert,
-    'slotChild':slotChild
+    'slotChild':slotChild,
+    'v-slot':slotItem
   },
   mounted(){
    this.routerQuery = JSON.stringify(this.$route.query);
