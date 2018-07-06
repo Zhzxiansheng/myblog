@@ -56,6 +56,7 @@
     <div class="swiper" @mousedown="down" @mouseup="up" @mousemove="move">
       <img src="../../../static/img/swiper.jpg"  @click="getImg" />
     </div>
+    
     <div class="imgContainer" v-show="imgShow">
       <div class="img-conent" @click="imgHide">
         <img :src="indexImg" />
@@ -71,6 +72,8 @@ import dialog from '../common/dialog'
 import alert from '../common/alert'
 import slotChild from '../common/slot'
 import slotItem from '../common/slot_2'
+ import z_swipe from '../common/swipe';
+
 var json1 = [{"name":"zzz"},{"name":"sss"}];
 var json2 = [{"name":"aaa"},{"name":"ddd"}];
 export default {
@@ -104,7 +107,8 @@ export default {
     'v-dialog':dialog,
     'v-alert':alert,
     'slotChild':slotChild,
-    'v-slot':slotItem
+    'v-slot':slotItem,
+    'z-swipe': z_swipe
   },
   mounted(){
    this.routerQuery = JSON.stringify(this.$route.query);
