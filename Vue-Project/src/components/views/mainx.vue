@@ -25,7 +25,7 @@
               <router-link to="/mainx/canvasLight">
                 <el-menu-item index="2">
                     <i class="el-icon-setting"></i>
-                    <span slot="title">灯光聚焦</span>
+                    <span slot="title">效果展示</span>
                   </el-menu-item>
               </router-link>
              <router-link to="/mainx/aboutme">

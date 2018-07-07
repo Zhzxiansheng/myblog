@@ -15,6 +15,7 @@ import aboutme from '@/components/views/aboutme'
 import canvasLight from '@/components/views/canvasLight'
 import morebtn from '@/components/views/morebtn'
 import btnStatus from '@/components/views/btnStatus'
+import fullPage from '@/components/views/test/fullpage'
 
 
 
@@ -26,6 +27,11 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/fullPage',
+      name: '全屏滚动',
+      component: fullPage
     },
     {
       path: '/view',
