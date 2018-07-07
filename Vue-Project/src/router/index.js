@@ -17,6 +17,9 @@ import morebtn from '@/components/views/morebtn'
 import btnStatus from '@/components/views/btnStatus'
 import fullPage from '@/components/views/test/fullpage'
 
+// swiper组件
+import swipe from '@/components/views/swipe'
+
 
 
 Vue.use(Router)
@@ -103,6 +106,11 @@ export default new Router({
           path: "/mainx/aboutme",
           name:"aboutme",
           component: aboutme,
+        },
+        {
+          path: '/mainx/swipe',
+          name: 'swipe',
+          component: swipe
         }
       ]
     }

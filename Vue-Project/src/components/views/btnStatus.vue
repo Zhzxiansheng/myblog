@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-      <el-button type="primary" plain> <router-link to="/mainx/aboutme">返回</router-link> </el-button>
+      <router-link to="/mainx/aboutme"><el-button type="primary" plain> 返回 </el-button></router-link>
       <p style="text-align:center;">indexOf的作用：返回当前元素在数组中的index值；如果没有就返回-1;</p>
     <div class="btnStatus" v-for="(item,index) in initData.list" >
             <div class="house-btn" >

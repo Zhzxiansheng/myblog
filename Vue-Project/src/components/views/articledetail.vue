@@ -4,7 +4,7 @@
      
       <div class="main">
         <el-breadcrumb separator="/" style="padding-top: 20px;">
-          <el-breadcrumb-item :to="{ path: '/mainx/firstview' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/mainx/article' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/mainx/article' }">文章列表</el-breadcrumb-item>
           <el-breadcrumb-item v-for="item in json" v-show="item.id == articid" :key="item.id">{{item.title}}</el-breadcrumb-item>
         </el-breadcrumb>

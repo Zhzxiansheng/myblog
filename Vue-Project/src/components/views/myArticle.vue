@@ -4,7 +4,7 @@
      
       <div class="main">
         <el-breadcrumb separator="/" style="padding-top: 20px; padding-bottom:20px;border-bottom:1px solid #dedede;">
-          <el-breadcrumb-item :to="{ path: '/mainx/firstview' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/mainx/myArticle' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/mainx/myArticle' }">我的文章</el-breadcrumb-item>
           <el-breadcrumb-item>{{articName}}</el-breadcrumb-item>
         </el-breadcrumb>

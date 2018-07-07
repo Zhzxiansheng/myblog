@@ -17,16 +17,16 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul> -->
-  <el-form ref="form" :model="form" label-width="80px">
+  <el-form ref="form" :model="form" label-width="80px"> 
     <el-form-item label="用户">
-      <el-input v-model="form.name" ref="user" placeholder="张浩壮" @keyup.native.enter="keyenter(form.name)" autofocus></el-input>
+      <el-input v-model="form.name" ref="user" class="user" placeholder="张浩壮" @keyup.native.enter="keyenter(form.name)" autofocus></el-input>
     </el-form-item>
     <el-form-item label="密码">
-      <el-input v-model="form.pwd" type="password" ref="pwd" placeholder="***"></el-input>
+      <el-input v-model="form.pwd" type="password" ref="pwd" placeholder="***" class="pwd"></el-input>
     </el-form-item>
     <el-button type="primary" @click="login($data)">进入主站</el-button> <router-link to="/view">Go to introduce</router-link>
   </el-form>
-
+  <!-- <input type="text" class="input"> -->
   </div>
 </template>
 
@@ -79,11 +79,15 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
+
 .hello{
   width: 50%;
   margin: 200px auto;
   text-align: center;
+  .input{
+    border: 1px solid red;
+  }
 }
 
 h1, h2 {

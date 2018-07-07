@@ -45,8 +45,22 @@
     <div class="slot">
       <slotChild v-show="slotShow" @closeSlot="closeSlot">
         <h3 slot="title">slot的使用</h3> 
-        <p slot="one">修改one内容</p>
+        <p slot="one">修改one内容(修改了slot组件的默认值)</p>
     </slotChild>
+
+    <v-slot>
+      <h3>slot 是插槽，可以插入标签，这里就是引用了slot_2里面抛出来的slot插槽</h3>
+    </v-slot>
+    </div>
+
+    <div class="swiper" @mousedown="down" @mouseup="up" @mousemove="move">
+      <img src="../../../static/img/swiper.jpg"  @click="getImg" />
+    </div>
+    
+    <div class="imgContainer" v-show="imgShow">
+      <div class="img-conent" @click="imgHide">
+        <img :src="indexImg" />
+      </div>
     </div>
   </div>
   
@@ -57,6 +71,9 @@
 import dialog from '../common/dialog'
 import alert from '../common/alert'
 import slotChild from '../common/slot'
+import slotItem from '../common/slot_2'
+ import z_swipe from '../common/swipe';
+
 var json1 = [{"name":"zzz"},{"name":"sss"}];
 var json2 = [{"name":"aaa"},{"name":"ddd"}];
 export default {
@@ -71,7 +88,11 @@ export default {
        msg:"",
        menuIndex:0,
        navlist: ['手机点餐', '手机外卖', '网络预订'],
-       disabled:false
+       disabled:false,
+       clientX:0,
+       clientXNext:0,
+       indexImg:"",
+       imgShow:false
     }
   },
   created(){
@@ -85,13 +106,41 @@ export default {
   components:{
     'v-dialog':dialog,
     'v-alert':alert,
-    'slotChild':slotChild
+    'slotChild':slotChild,
+    'v-slot':slotItem,
+    'z-swipe': z_swipe
   },
   mounted(){
    this.routerQuery = JSON.stringify(this.$route.query);
    console.log(this.$route.query);
   },
   methods:{
+    move(event){
+      // console.log(event);
+    },
+    imgHide(){
+      if(this.imgShow){
+        this.imgShow =!this.imgShow;
+      }
+    },
+    getImg(event){
+      console.log(event.target.currentSrc);
+      this.imgShow = true;
+      this.indexImg = event.target.currentSrc;
+    },
+    // 鼠标按下事件
+    down(event){
+      console.log("当前鼠标X 轴位置："+ event.clientX);
+      this.clientX = event.clientX;
+
+    },
+    // 鼠标抬起
+    up(event){
+      console.log("当前鼠标X 轴位置："+ event.clientX);
+      var D_value = event.clientX - this.clientX; // 两次事件移动的差值
+      // console.log(D_value);
+    },
+
     menuShow(index){
       var that = this;
       that.menuIndex  = index;
@@ -165,6 +214,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.swiper{
+  width: 500px;
+  height: 400px;
+  background: yellowgreen;
+}
 a{
   text-decoration: none;
   color: #000000;
@@ -191,5 +245,25 @@ a{
     color: #fff;
     background-color: #409EFF;
     border-color: #409EFF;
+}
+.imgContainer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .8);
+  z-index: 2;
+}
+.img-conent{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  z-index: 5;
+}
+ img{
+  width: 100%;
 }
 </style>
