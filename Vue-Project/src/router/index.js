@@ -17,8 +17,6 @@ import morebtn from '@/components/views/morebtn'
 import btnStatus from '@/components/views/btnStatus'
 import fullPage from '@/components/views/test/fullpage'
 
-// swiper组件
-import swipe from '@/components/views/swipe'
 
 
 
