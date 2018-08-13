@@ -104,11 +104,6 @@ export default new Router({
           path: "/mainx/aboutme",
           name:"aboutme",
           component: aboutme,
-        },
-        {
-          path: '/mainx/swipe',
-          name: 'swipe',
-          component: swipe
         }
       ]
     }

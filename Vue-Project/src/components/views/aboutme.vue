@@ -53,7 +53,7 @@
     </v-slot>
     </div>
 
-    <div class="swiper" @mousedown="down" @mouseup="up" @mousemove="move">
+    <!-- <div class="swiper" @mousedown="down" @mouseup="up" @mousemove="move">
       <img src="../../../static/img/swiper.jpg"  @click="getImg" />
     </div>
     
@@ -61,7 +61,9 @@
       <div class="img-conent" @click="imgHide">
         <img :src="indexImg" />
       </div>
-    </div>
+    </div> -->
+    <paging :total="total" :current-page='current' @pagechange="pagechange"></paging>
+    <v-pagination :total="total" :current-page='current' @pagechange="pagechange"></v-pagination>
   </div>
   
 
@@ -72,7 +74,7 @@ import dialog from '../common/dialog'
 import alert from '../common/alert'
 import slotChild from '../common/slot'
 import slotItem from '../common/slot_2'
- import z_swipe from '../common/swipe';
+import pagination from '../paging/page'
 
 var json1 = [{"name":"zzz"},{"name":"sss"}];
 var json2 = [{"name":"aaa"},{"name":"ddd"}];
@@ -92,7 +94,10 @@ export default {
        clientX:0,
        clientXNext:0,
        indexImg:"",
-       imgShow:false
+       imgShow:false,
+       total: 50,     // 记录总条数
+       display: 10,   // 每页显示条数
+       current: 1,   // 当前的页数
     }
   },
   created(){
@@ -108,7 +113,7 @@ export default {
     'v-alert':alert,
     'slotChild':slotChild,
     'v-slot':slotItem,
-    'z-swipe': z_swipe
+    'v-pagination':pagination
   },
   mounted(){
    this.routerQuery = JSON.stringify(this.$route.query);
@@ -177,6 +182,11 @@ export default {
         that.orAlert = false;
       },2000)
     },
+    pagechange:function(currentPage){
+       console.log(currentPage);
+       // ajax请求, 向后台发送 currentPage, 来获取对应的数据
+
+     },
     getAlert(){
       var that = this;
       that.alertMsg = "调用toast提示";
